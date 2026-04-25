@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     ADAS THESIS - SUMO/UDP Co-simulation Demo
+     Student  : HasnainBadar
+
+     KEY FACTS (from esmini log):
+       NPC_A world pos: x=-474.68, y=-161.35, hdg=3.89 at s=160
+       NPC_B world pos: computed at s=80, laneId=-2
+       esmini assigns ports sequentially per UDP controller object:
+         NPC_A = first  UDP object = port 49951
+         NPC_B = second UDP object = port 49952
+
+     HOW TO RUN:
+       Terminal 1:
+         cd C:\esmini
+         .\bin\esmini --osc C:\adas-thesis\scenarios\S0_controller_demo\sumo_bridge.xosc --window 60 60 1200 600
+
+       Terminal 2:
+         cd C:\adas-thesis
+         .venv\Scripts\Activate.ps1
+         python scripts\sumo_traci_bridge.py
+-->
+<OpenSCENARIO>
+
+  <FileHeader revMajor="1" revMinor="0"
+              date="2025-01-01T00:00:00"
+              description="SUMO-UDP co-simulation demo — ADAS thesis"
+              author="HasnainBadar"/>
+
+  <ParameterDeclarations>
+    <ParameterDeclaration name="EgoStartS"    parameterType="double" value="100"/>
+    <ParameterDeclaration name="EgoInitSpeed" parameterType="double" value="13.9"/>
+    <ParameterDeclaration name="NPC_A_StartS" parameterType="double" value="160"/>
+    <ParameterDeclaration name="NPC_B_StartS" parameterType="double" value="80"/>
+  </ParameterDeclarations>
+
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+  </RoadNetwork>
+
+  <Entities>
+
+    <!-- EGO: keyboard controlled -->
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="interactiveDriver"/>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!--
+      NPC_A: first UDP object — esmini assigns port 49951 automatically.
+      inputMode=3 = stateXYH.
+      execMode=1 = external control overrides esmini completely.
+      Port parameter is ignored by esmini — it assigns sequentially.
+      We keep it for documentation only.
+    -->
+    <ScenarioObject name="NPC_A">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="UDPDriverController">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="port"      value="49951"/>
+            <ParameterAssignment parameterRef="inputMode" value="3"/>
+            <ParameterAssignment parameterRef="execMode"  value="1"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!--
+      NPC_B: second UDP object — esmini assigns port 49952 automatically.
+    -->
+    <ScenarioObject name="NPC_B">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="UDPDriverController">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="port"      value="49952"/>
+            <ParameterAssignment parameterRef="inputMode" value="3"/>
+            <ParameterAssignment parameterRef="execMode"  value="1"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+  </Entities>
+
+  <Storyboard>
+    <Init>
+      <Actions>
+
+        <!-- EGO: place, activate keyboard, set speed -->
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="$EgoStartS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$EgoInitSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- NPC_A: place at s=160 lane -1, activate UDP -->
+        <Private entityRef="NPC_A">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="$NPC_A_StartS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="13.9"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+        </Private>
+
+        <!-- NPC_B: place at s=80 lane -2, activate UDP -->
+        <Private entityRef="NPC_B">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-2" offset="0" s="$NPC_B_StartS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="13.9"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init>
+
+    <Story name="MainStory">
+      <Act name="MainAct">
+        <ManeuverGroup maximumExecutionCount="1" name="MainMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+          <Maneuver name="MainManeuver">
+            <Event name="MainEvent" priority="overwrite">
+              <Action name="MainAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="13.9"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="NeverFires" delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="9999" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="ActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="SimTimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="3600" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

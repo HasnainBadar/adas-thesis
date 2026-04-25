@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ================================================================
+     ADAS THESIS — Interactive Traffic Simulation
+     Student  : HasnainBadar
+     Map      : C:/adas-thesis/maps/adas_network.xodr
+     Ego      : keyboard (interactiveDriver) — Arrow keys / WASD
+     Traffic  : TrafficSwarmAction — 20 NPCs auto-spawned around Ego
+     Fallback : NPC_Lead + NPC_Side with scripted Ego-reactive braking
+     Duration : 3600 s (1 hour) — press ESC to quit earlier
+
+     HOW TO RUN:
+       cd C:\esmini
+       .\bin\esmini --osc C:\adas-thesis\scenarios\S0\interactive_traffic.xosc ^
+                    --window 60 60 1200 600
+
+     TO RECORD:
+       add --record C:\adas-thesis\results\raw\interactive_session.dat
+
+     KEYBOARD CONTROLS (interactiveDriver):
+       Throttle  : Up arrow  / W
+       Brake     : Down arrow / S
+       Steer L   : Left arrow / A
+       Steer R   : Right arrow / D
+================================================================ -->
+<OpenSCENARIO>
+
+  <FileHeader revMajor="1" revMinor="1"
+              date="2025-01-01T00:00:00"
+              description="Interactive traffic — ADAS thesis S0"
+              author="HasnainBadar"/>
+
+  <!-- ── PARAMETERS ─────────────────────────────────────────── -->
+  <ParameterDeclarations>
+    <!-- Ego start: highway straight, 50 m from road start -->
+    <ParameterDeclaration name="EgoStartS"    parameterType="double"  value="50"/>
+    <!-- Ego initial speed (m/s): 13.9 = 50 kph -->
+    <ParameterDeclaration name="EgoInitSpeed" parameterType="double"  value="13.9"/>
+    <!-- Swarm cruise speed (m/s): 22.2 = 80 kph -->
+    <ParameterDeclaration name="SwarmSpeed"   parameterType="double"  value="22.2"/>
+    <!-- NPC_Lead braking thresholds (freespace gap in metres) -->
+    <ParameterDeclaration name="BrakeGap"     parameterType="double"  value="15.0"/>
+    <ParameterDeclaration name="ResumeGap"    parameterType="double"  value="30.0"/>
+  </ParameterDeclarations>
+
+  <!-- ── CATALOGS ───────────────────────────────────────────── -->
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+
+  <!-- ── ROAD NETWORK ───────────────────────────────────────── -->
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+    <!--
+      BACKUP: If your map fails to load, comment out the line above and
+      uncomment this one, then change all roadId="1" to roadId="0" below:
+      <LogicFile filepath="C:/esmini/resources/xodr/e6mini.xodr"/>
+    -->
+  </RoadNetwork>
+
+  <!-- ── ENTITIES ───────────────────────────────────────────── -->
+  <Entities>
+
+    <!-- EGO — keyboard controlled via interactiveDriver -->
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <!--
+        ObjectController goes in Entities (not Init).
+        ActivateControllerAction in Init then switches it ON.
+        This exact two-step pattern is from cut-in_interactive.xosc.
+      -->
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="interactiveDriver"/>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!-- NPC_Lead — scripted lead vehicle, brakes when Ego tailgates -->
+    <ScenarioObject name="NPC_Lead">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+
+    <!-- NPC_Side — faster vehicle in adjacent lane, naturally overtakes -->
+    <ScenarioObject name="NPC_Side">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+
+  </Entities>
+
+  <!-- ══════════════════════════════════════════════════════════
+       STORYBOARD
+  ══════════════════════════════════════════════════════════ -->
+  <Storyboard>
+
+    <!-- ── INIT ─────────────────────────────────────────────── -->
+    <Init>
+      <Actions>
+
+        <!-- GLOBAL: Spawn swarm of 20 NPCs that follow Ego around the map -->
+        <!--
+          TrafficSwarmAction parameter guide:
+            innerRadius     = dead zone — no NPCs within this circle (m)
+            semiMajorAxis   = ellipse long axis — how far ahead/behind (m)
+            semiMinorAxis   = ellipse short axis — how far left/right (m)
+            numberOfVehicles= NPCs to maintain at all times (respawn as needed)
+            velocity        = target speed for swarm NPCs (m/s)
+            offset          = shift ellipse forward of Ego centre (m)
+          Result: Ego is always surrounded by moving traffic on all sides.
+        -->
+        <GlobalAction>
+          <TrafficAction>
+            <TrafficSwarmAction innerRadius="25"
+                                semiMajorAxis="150"
+                                semiMinorAxis="50"
+                                numberOfVehicles="20"
+                                velocity="$SwarmSpeed"
+                                offset="20">
+              <CentralObject entityRef="Ego"/>
+            </TrafficSwarmAction>
+          </TrafficAction>
+        </GlobalAction>
+
+        <!-- EGO: Teleport + activate controller + set initial speed -->
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <!--
+                  Road 1 = highway straight (your map).
+                  laneId="-1" = Ego direction lane (verified from your context).
+                  s=50 = 50 m from start of road.
+                -->
+                <LanePosition roadId="1" laneId="-1" offset="0" s="$EgoStartS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <!-- Activate the interactiveDriver assigned in Entities above -->
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <!-- Give Ego an initial speed so it's rolling at sim start -->
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$EgoInitSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- NPC_Lead: 80 m ahead of Ego, same lane, cruising at 80 kph -->
+        <Private entityRef="NPC_Lead">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <!-- s=130 puts it 80 m ahead of Ego at s=50 -->
+                <LanePosition roadId="1" laneId="-1" offset="0" s="130">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="22.2"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- NPC_Side: slightly behind Ego in adjacent lane, faster speed -->
+        <Private entityRef="NPC_Side">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <!--
+                  laneId="-2" = adjacent lane (verified from your context).
+                  s=30 = 20 m behind Ego — will naturally overtake.
+                -->
+                <LanePosition roadId="1" laneId="-2" offset="0" s="30">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <!-- 25 m/s = 90 kph — faster than Ego's 50 kph start, will overtake -->
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="25.0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init><!-- end Init -->
+
+    <!-- ══════════════════════════════════════════════════════
+         STORY 1: NPC_Lead brakes and resumes based on Ego proximity
+         Two separate Acts — one for braking, one for resuming.
+         maximumExecutionCount="10" = can repeat 10 times per run.
+    ══════════════════════════════════════════════════════ -->
+    <Story name="NPC_Lead_Story">
+
+      <!-- ACT A: Brake when Ego is too close -->
+      <Act name="NPC_Lead_BrakeAct">
+        <ManeuverGroup maximumExecutionCount="10" name="NPC_Lead_BrakeMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="NPC_Lead"/>
+          </Actors>
+          <Maneuver name="NPC_Lead_BrakeManeuver">
+            <Event name="NPC_Lead_BrakeEvent" priority="overwrite">
+              <Action name="NPC_Lead_BrakeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <!--
+                        Brake at -4 m/s² rate.
+                        Target: 8 m/s (29 kph) — doesn't stop, just slows.
+                        Feels like a driver easing off when someone tailgates them.
+                      -->
+                      <SpeedActionDynamics dynamicsShape="linear"
+                                           dynamicsDimension="rate"
+                                           value="-4"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="8.0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <!--
+                    HOW THIS TRIGGER WORKS:
+                    - TriggeringEntities = NPC_Lead (the entity doing the detecting)
+                    - RelativeDistanceCondition: distance from NPC_Lead to Ego
+                    - relativeDistanceType="longitudinal" = along-road only
+                    - freespace="true" = gap between vehicle bodies, not centres
+                    - rule="lessThan" + value=15 = fires when Ego is within 15 m behind
+                    - conditionEdge="rising" = fires ONCE on transition, not continuously
+                    This is the verified working pattern from your previous sessions.
+                  -->
+                  <Condition name="NPC_Lead_BrakeCondition"
+                             delay="0"
+                             conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="NPC_Lead"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition entityRef="Ego"
+                                                   relativeDistanceType="longitudinal"
+                                                   value="$BrakeGap"
+                                                   freespace="true"
+                                                   rule="lessThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="NPC_Lead_BrakeActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act><!-- end NPC_Lead_BrakeAct -->
+
+      <!-- ACT B: Resume cruise speed when Ego falls back -->
+      <Act name="NPC_Lead_ResumeAct">
+        <ManeuverGroup maximumExecutionCount="10" name="NPC_Lead_ResumeMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="NPC_Lead"/>
+          </Actors>
+          <Maneuver name="NPC_Lead_ResumeManeuver">
+            <Event name="NPC_Lead_ResumeEvent" priority="overwrite">
+              <Action name="NPC_Lead_ResumeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <!--
+                        Gently return to 80 kph over 5 seconds.
+                        Linear ramp feels natural (not a sudden jump).
+                      -->
+                      <SpeedActionDynamics dynamicsShape="linear"
+                                           dynamicsDimension="time"
+                                           value="5.0"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="22.2"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <!--
+                    Same pattern as brake trigger but REVERSED:
+                    rule="greaterThan" + value=30 = fires when gap > 30 m.
+                    delay="1.0" = wait 1 second after gap opens before resuming.
+                  -->
+                  <Condition name="NPC_Lead_ResumeCondition"
+                             delay="1.0"
+                             conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="NPC_Lead"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition entityRef="Ego"
+                                                   relativeDistanceType="longitudinal"
+                                                   value="$ResumeGap"
+                                                   freespace="true"
+                                                   rule="greaterThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="NPC_Lead_ResumeActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act><!-- end NPC_Lead_ResumeAct -->
+
+    </Story><!-- end NPC_Lead_Story -->
+
+    <!-- ══════════════════════════════════════════════════════
+         STORY 2: NPC_Side — just cruises faster, no trigger needed.
+         Structural story so NPC_Side is a valid scenario participant.
+         The speed set in Init (25 m/s vs Ego's 13.9 m/s) causes the
+         natural overtake — no scripting required.
+    ══════════════════════════════════════════════════════ -->
+    <Story name="NPC_Side_Story">
+      <Act name="NPC_Side_CruiseAct">
+        <ManeuverGroup maximumExecutionCount="1" name="NPC_Side_CruiseMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="NPC_Side"/>
+          </Actors>
+          <Maneuver name="NPC_Side_CruiseManeuver">
+            <Event name="NPC_Side_CruiseEvent" priority="overwrite">
+              <Action name="NPC_Side_CruiseAction">
+                <!--
+                  LaneOffsetAction with value=0 is a valid no-op action.
+                  Keeps NPC_Side perfectly centred in its lane.
+                  Needed because esmini requires at least one Action per Event.
+                -->
+                <PrivateAction>
+                  <LateralAction>
+                    <LaneOffsetAction continuous="false">
+                      <LaneOffsetActionDynamics maxLateralAcc="0.5"
+                                                dynamicsShape="sinusoidal"/>
+                      <LaneOffsetTarget>
+                        <AbsoluteTargetLaneOffset value="0"/>
+                      </LaneOffsetTarget>
+                    </LaneOffsetAction>
+                  </LateralAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="NPC_Side_CruiseCondition"
+                             delay="0"
+                             conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="NPC_Side_CruiseActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story><!-- end NPC_Side_Story -->
+
+    <!-- ── STOP TRIGGER ──────────────────────────────────────── -->
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="SimTimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <!-- 3600 s = 1 hour. Increase to 7200 for longer sessions. -->
+            <SimulationTimeCondition value="3600" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

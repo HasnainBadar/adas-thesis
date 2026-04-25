@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <vType id="car" accel="2.0" decel="4.5" sigma="0.0" length="5.0" minGap="2.5" maxSpeed="33.33" carFollowModel="IDM" tau="1.5" speedFactor="1.0" speedDev="0.0"/>
+    <route id="route_highway" edges="1"/>
+    <vehicle id="EGO_GHOST" type="car" route="route_highway" depart="0" departLane="0" departPos="100" departSpeed="13.9" color="1,1,1"/>
+    <vehicle id="NPC_A"     type="car" route="route_highway" depart="0" departLane="0" departPos="160" departSpeed="13.9" color="1,0,0"/>
+    <vehicle id="NPC_B"     type="car" route="route_highway" depart="0" departLane="1" departPos="80"  departSpeed="13.9" color="0,0,1"/>
+</routes>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+  <FileHeader description="S0 Interactive Ego one NPC" author="HasnainBadar" revMajor="1" revMinor="0" date="2025-01-01T00:00:00"/>
+
+  <ParameterDeclarations/>
+
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+  </RoadNetwork>
+
+  <Entities>
+
+    <!-- Ego: keyboard controlled -->
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="interactiveDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="SteeringRate" value="4.0"/>
+            <ParameterAssignment parameterRef="SpeedFactor" value="1.0"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!-- NPC1: no controller, driven by SpeedAction + brake logic -->
+    <ScenarioObject name="NPC1">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+
+  </Entities>
+
+  <Storyboard>
+    <Init>
+      <Actions>
+
+        <!-- Ego: s=150, lane -1, starts stationary -->
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" s="150" offset="0"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="time"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <ActivateControllerAction longitudinal="true" lateral="true"/>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- NPC1: s=50, lane -1, behind Ego, driving at 50kph toward Ego -->
+        <Private entityRef="NPC1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" s="50" offset="0"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="time"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="13.89"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init>
+
+    <Story name="S0_Story">
+
+      <!-- NPC1 brakes when Ego is ahead within 25m -->
+      <Act name="NPC1_Act">
+        <ManeuverGroup name="NPC1_Group" maximumExecutionCount="10">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="NPC1"/>
+          </Actors>
+          <Maneuver name="NPC1_Maneuver">
+
+            <!-- Brake when Ego is ahead and within 25m -->
+            <Event name="NPC1_BrakeEvent" priority="overwrite">
+              <Action name="NPC1_BrakeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" value="3" dynamicsDimension="time"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="NPC1_EgoAhead" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="NPC1"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition
+                          entityRef="Ego"
+                          relativeDistanceType="longitudinal"
+                          value="25"
+                          freespace="true"
+                          rule="lessThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+
+            <!-- Resume when Ego moves more than 40m ahead -->
+            <Event name="NPC1_ResumeEvent" priority="overwrite">
+              <Action name="NPC1_ResumeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" value="3" dynamicsDimension="time"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="13.89"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="NPC1_EgoFar" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="NPC1"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition
+                          entityRef="Ego"
+                          relativeDistanceType="longitudinal"
+                          value="40"
+                          freespace="true"
+                          rule="greaterThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="NPC1_ActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterOrEqual"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+    </Story>
+
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="SimEnd" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="3600" rule="greaterOrEqual"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

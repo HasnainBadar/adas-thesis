@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+   <FileHeader revMajor="1" revMinor="1" date="2026-04-22T08:00:00" description="Interactive Swarm Test on Custom Map" author="HasnainBadar"/>
+   
+   <ParameterDeclarations>
+      <ParameterDeclaration name="EgoVehicle" parameterType="string" value="car_white"/>
+   </ParameterDeclarations>
+
+   <CatalogLocations>
+      <VehicleCatalog>
+         <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+      </VehicleCatalog>
+      <ControllerCatalog>
+         <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+      </ControllerCatalog>
+   </CatalogLocations>
+
+   <RoadNetwork>
+      <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+   </RoadNetwork>
+
+   <Entities>
+      <ScenarioObject name="Ego">
+         <CatalogReference catalogName="VehicleCatalog" entryName="$EgoVehicle"/>
+         <ObjectController>
+             <CatalogReference catalogName="ControllerCatalog" entryName="interactiveDriver"/>
+         </ObjectController>
+      </ScenarioObject>
+   </Entities>
+
+   <Storyboard>
+      <Init>
+         <Actions>
+            <GlobalAction>
+               <TrafficAction>
+                  <TrafficSwarmAction innerRadius="50" semiMajorAxis="200" semiMinorAxis="200" numberOfVehicles="30" velocity="15" offset="0">
+                      <CentralObject entityRef="Ego" />
+                  </TrafficSwarmAction>
+               </TrafficAction>
+            </GlobalAction>
+
+            <Private entityRef="Ego">
+               <PrivateAction>
+                  <TeleportAction>
+                     <Position>
+                        <LanePosition roadId="1" laneId="-1" offset="0" s="50">
+                           <Orientation type="relative" h="0" />
+                        </LanePosition>
+                     </Position>
+                  </TeleportAction>
+               </PrivateAction>
+               <PrivateAction>
+                  <LongitudinalAction>
+                     <SpeedAction>
+                        <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0" />
+                        <SpeedActionTarget>
+                           <AbsoluteTargetSpeed value="15"/>
+                        </SpeedActionTarget>
+                     </SpeedAction>
+                  </LongitudinalAction>
+               </PrivateAction>
+            </Private>
+         </Actions>
+      </Init>
+
+      <Story name="story">
+         <Act name="act" >
+             <ManeuverGroup maximumExecutionCount="1" name="DummyGroup">
+               <Actors selectTriggeringEntities="false">
+                  <EntityRef entityRef="Ego"/>
+               </Actors>
+             </ManeuverGroup>
+         </Act>
+      </Story>
+
+      <StopTrigger>
+         <ConditionGroup>
+            <Condition name="SwarmStopTrigger" delay="0" conditionEdge="none">
+               <ByValueCondition>
+                  <SimulationTimeCondition value="3600" rule="greaterThan"/>
+               </ByValueCondition>
+            </Condition>
+         </ConditionGroup>
+      </StopTrigger>
+   </Storyboard>
+</OpenSCENARIO>

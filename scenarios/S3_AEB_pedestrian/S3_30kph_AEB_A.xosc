@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+   <FileHeader revMajor="1"
+               revMinor="0"
+               date="2025-01-01T00:00:00"
+               description="S3 30kph AEB_A - pedestrian stops in lane, AEB fires"
+               author="HasnainBadar"/>
+
+   <ParameterDeclarations>
+      <ParameterDeclaration name="EgoVehicle" parameterType="string" value="car_white"/>
+      <ParameterDeclaration name="PedestrianSpeed" parameterType="double" value="1.2"/>
+   </ParameterDeclarations>
+
+   <CatalogLocations>
+      <VehicleCatalog>
+         <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+      </VehicleCatalog>
+   </CatalogLocations>
+
+   <RoadNetwork>
+      <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+   </RoadNetwork>
+
+   <Entities>
+      <ScenarioObject name="Ego">
+         <CatalogReference catalogName="VehicleCatalog" entryName="$EgoVehicle"/>
+      </ScenarioObject>
+      <ScenarioObject name="Pedestrian">
+         <Pedestrian mass="80" model="EPTa" name="pedestrian_adult"
+                     pedestrianCategory="pedestrian"
+                     model3d="C:/esmini/resources/models/walkman.osgb">
+            <ParameterDeclarations/>
+            <BoundingBox>
+               <Center x="0.06" y="0.0" z="0.923"/>
+               <Dimensions height="1.8" length="0.6" width="0.5"/>
+            </BoundingBox>
+            <Properties>
+               <Property name="scaleMode" value="BBToModel"/>
+            </Properties>
+         </Pedestrian>
+      </ScenarioObject>
+   </Entities>
+
+   <Storyboard>
+      <Init>
+         <Actions>
+            <!-- Ego: Road 13, lane 1, s=100, 30 kph = 8.33 m/s -->
+            <Private entityRef="Ego">
+               <PrivateAction>
+                  <LongitudinalAction>
+                     <SpeedAction>
+                        <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                        <SpeedActionTarget>
+                           <AbsoluteTargetSpeed value="8.33"/>
+                        </SpeedActionTarget>
+                     </SpeedAction>
+                  </LongitudinalAction>
+               </PrivateAction>
+               <PrivateAction>
+                  <TeleportAction>
+                     <Position>
+                        <LanePosition roadId="13" laneId="1" offset="0" s="100"/>
+                     </Position>
+                  </TeleportAction>
+               </PrivateAction>
+            </Private>
+
+            <!-- Pedestrian: starts at left kerb, will walk into Ego lane and stop -->
+            <Private entityRef="Pedestrian">
+               <PrivateAction>
+                  <TeleportAction>
+                     <Position>
+                        <LanePosition roadId="13" laneId="1" offset="6.0" s="5">
+                           <Orientation type="absolute" h="3.927" p="0" r="0"/>
+                        </LanePosition>
+                     </Position>
+                  </TeleportAction>
+               </PrivateAction>
+            </Private>
+         </Actions>
+      </Init>
+
+      <Story name="S3_Story">
+
+         <!-- Pedestrian Act: walk into Ego lane centre and stop there -->
+         <Act name="Pedestrian_Act">
+            <ManeuverGroup maximumExecutionCount="1" name="Pedestrian_MG">
+               <Actors selectTriggeringEntities="false">
+                  <EntityRef entityRef="Pedestrian"/>
+               </Actors>
+               <Maneuver name="Pedestrian_Maneuver">
+
+                  <!-- Step 1: walk into Ego lane -->
+                  <Event name="PedestrianWalkEvent" priority="overwrite" maximumExecutionCount="1">
+                     <Action name="WalkSpeed">
+                        <PrivateAction>
+                           <LongitudinalAction>
+                              <SpeedAction>
+                                 <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                                 <SpeedActionTarget>
+                                    <AbsoluteTargetSpeed value="$PedestrianSpeed"/>
+                                 </SpeedActionTarget>
+                              </SpeedAction>
+                           </LongitudinalAction>
+                        </PrivateAction>
+                     </Action>
+                     <Action name="WalkTrajectory">
+                        <PrivateAction>
+                           <RoutingAction>
+                              <FollowTrajectoryAction>
+                                 <Trajectory closed="false" name="ped_traj">
+                                    <ParameterDeclarations/>
+                                    <Shape>
+                                       <Polyline>
+                                          <!-- Start: left kerb -->
+                                          <Vertex>
+                                             <Position>
+                                                <LanePosition roadId="13" laneId="1" offset="6.0" s="5">
+                                                   <Orientation type="absolute" h="3.927" p="0" r="0"/>
+                                                </LanePosition>
+                                             </Position>
+                                          </Vertex>
+                                          <!-- Stop: Ego lane centre — pedestrian freezes here -->
+                                          <Vertex>
+                                             <Position>
+                                                <LanePosition roadId="13" laneId="1" offset="0.0" s="5">
+                                                   <Orientation type="absolute" h="3.927" p="0" r="0"/>
+                                                </LanePosition>
+                                             </Position>
+                                          </Vertex>
+                                       </Polyline>
+                                    </Shape>
+                                 </Trajectory>
+                                 <TimeReference>
+                                    <None/>
+                                 </TimeReference>
+                                 <TrajectoryFollowingMode followingMode="follow"/>
+                              </FollowTrajectoryAction>
+                           </RoutingAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <!-- Pedestrian walks when Ego has traveled 30m — enters lane well before Ego arrives -->
+                           <Condition name="PedWalkCondition" delay="0" conditionEdge="rising">
+                              <ByEntityCondition>
+                                 <TriggeringEntities triggeringEntitiesRule="any">
+                                    <EntityRef entityRef="Ego"/>
+                                 </TriggeringEntities>
+                                 <EntityCondition>
+                                    <TraveledDistanceCondition value="30"/>
+                                 </EntityCondition>
+                              </ByEntityCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+                  <!-- Step 2: stop once pedestrian reaches lane centre -->
+                  <Event name="PedestrianStopEvent" priority="overwrite" maximumExecutionCount="1">
+                     <Action name="StopSpeed">
+                        <PrivateAction>
+                           <LongitudinalAction>
+                              <SpeedAction>
+                                 <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                                 <SpeedActionTarget>
+                                    <AbsoluteTargetSpeed value="0.0"/>
+                                 </SpeedActionTarget>
+                              </SpeedAction>
+                           </LongitudinalAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <!-- Stop 5s after walking starts — enough time to reach lane centre at 1.2 m/s -->
+                           <Condition name="PedStopCondition" delay="5.0" conditionEdge="rising">
+                              <ByValueCondition>
+                                 <StoryboardElementStateCondition storyboardElementType="event"
+                                                                  storyboardElementRef="PedestrianWalkEvent"
+                                                                  state="startTransition"/>
+                              </ByValueCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+               </Maneuver>
+            </ManeuverGroup>
+            <StartTrigger>
+               <ConditionGroup>
+                  <Condition name="Ped_ActStart" delay="0" conditionEdge="none">
+                     <ByValueCondition>
+                        <SimulationTimeCondition value="0" rule="greaterThan"/>
+                     </ByValueCondition>
+                  </Condition>
+               </ConditionGroup>
+            </StartTrigger>
+         </Act>
+
+         <!-- Ego AEB Act: same pattern as S1 — TTC to stationary pedestrian -->
+         <Act name="Ego_AEB_Act">
+            <ManeuverGroup maximumExecutionCount="1" name="Ego_MG" actorRef="Ego">
+               <Actors selectTriggeringEntities="false">
+                  <EntityRef entityRef="Ego"/>
+               </Actors>
+               <Maneuver name="Ego_Maneuver">
+
+                  <Event name="DriveConstant" priority="override">
+                     <Action>
+                        <PrivateAction>
+                           <LongitudinalAction>
+                              <SpeedAction>
+                                 <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="time"/>
+                                 <SpeedActionTarget>
+                                    <AbsoluteTargetSpeed value="8.33"/>
+                                 </SpeedActionTarget>
+                              </SpeedAction>
+                           </LongitudinalAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <Condition name="SimStart" delay="0" conditionEdge="none">
+                              <ByValueCondition>
+                                 <SimulationTimeCondition value="0" rule="greaterOrEqual"/>
+                              </ByValueCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+                  <!-- AEB: TTC to stationary pedestrian in lane — same as S1 pattern -->
+                  <Event name="AEB_Brake" priority="override">
+                     <Action>
+                        <PrivateAction>
+                           <LongitudinalAction>
+                              <SpeedAction>
+                                 <SpeedActionDynamics dynamicsShape="linear" value="2" dynamicsDimension="time"/>
+                                 <SpeedActionTarget>
+                                    <AbsoluteTargetSpeed value="0"/>
+                                 </SpeedActionTarget>
+                              </SpeedAction>
+                           </LongitudinalAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <Condition name="TTC_threshold" delay="0" conditionEdge="rising">
+                              <ByEntityCondition>
+                                 <TriggeringEntities triggeringEntitiesRule="any">
+                                    <EntityRef entityRef="Ego"/>
+                                 </TriggeringEntities>
+                                 <EntityCondition>
+                                    <TimeToCollisionCondition value="2.5" rule="lessThan" freespace="false">
+                                       <TimeToCollisionConditionTarget>
+                                          <EntityRef entityRef="Pedestrian"/>
+                                       </TimeToCollisionConditionTarget>
+                                    </TimeToCollisionCondition>
+                                 </EntityCondition>
+                              </ByEntityCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+               </Maneuver>
+            </ManeuverGroup>
+            <!-- AEB Act starts after pedestrian has had time to reach lane centre (t > 8s) -->
+            <StartTrigger>
+               <ConditionGroup>
+                  <Condition name="Ego_ActStart" delay="0" conditionEdge="rising">
+                     <ByValueCondition>
+                        <SimulationTimeCondition value="8" rule="greaterThan"/>
+                     </ByValueCondition>
+                  </Condition>
+               </ConditionGroup>
+            </StartTrigger>
+         </Act>
+
+      </Story>
+
+      <StopTrigger>
+         <ConditionGroup>
+            <Condition name="MinTime" delay="0" conditionEdge="none">
+               <ByValueCondition>
+                  <SimulationTimeCondition value="8" rule="greaterOrEqual"/>
+               </ByValueCondition>
+            </Condition>
+            <Condition name="EgoStopped" delay="1" conditionEdge="none">
+               <ByEntityCondition>
+                  <TriggeringEntities triggeringEntitiesRule="any">
+                     <EntityRef entityRef="Ego"/>
+                  </TriggeringEntities>
+                  <EntityCondition>
+                     <SpeedCondition value="0.5" rule="lessThan"/>
+                  </EntityCondition>
+               </ByEntityCondition>
+            </Condition>
+         </ConditionGroup>
+         <ConditionGroup>
+            <Condition name="MaxTime" delay="0" conditionEdge="none">
+               <ByValueCondition>
+                  <SimulationTimeCondition value="60" rule="greaterOrEqual"/>
+               </ByValueCondition>
+            </Condition>
+         </ConditionGroup>
+      </StopTrigger>
+
+   </Storyboard>
+</OpenSCENARIO>
