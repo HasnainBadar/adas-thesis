@@ -1,0 +1,1262 @@
+esmini GIT REV: v3.1.0-0-a8e18fce
+esmini GIT TAG: v3.1.0
+esmini GIT BRANCH: tags/v3.1.0^0
+esmini BUILD VERSION: 6169
+[] [info] Loaded C:/adas-thesis/scenarios/S0_controller_demo/swarm_ALKS_ON_V2.xosc
+[2026-05-29 20:21:25]
+[] [info] Player options: --osc C:/adas-thesis/scenarios/S0_controller_demo/swarm_ALKS_ON_V2.xosc --camera_mode orbit --ground_plane auto --headless --info_text 1 --logfile_path log.txt --log_level info --path C:\adas-thesis\OpenScenarioDrive\_internal\resources --text_scale 1.0 --traj_filter 0.1 --light_mode auto 
+[] [info] No fixed timestep specified - running in realtime speed
+[] [info] Added path C:\adas-thesis\OpenScenarioDrive\_internal\resources
+[] [info] Generated seed 1440967542
+[] [info] Loading C:/adas-thesis/scenarios/S0_controller_demo/swarm_ALKS_ON_V2.xosc (v1.1)
+[] [info] 0 variables
+[] [error] Unsupported geo reference attr: +no_defs
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 206--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 206--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 206--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 206--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 206--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Traffic sign mapping file search paths attempted for file opendrive_traffic_signals.txt:
+[] [info]   traffic_signals/opendrive_traffic_signals.txt
+[] [info]   opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/./opendrive_traffic_signals.txt
+[] [info]   ./resources/./traffic_signals/opendrive_traffic_signals.txt
+[] [info]   ./resources/./opendrive_traffic_signals.txt
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located, using specified file path
+[] [warn] Traffic sign mapping file traffic_signals/opendrive_traffic_signals.txt not located
+[] [info] Signal Type 1000001--1.0000000000000000e+0 doesn't exists for country opendrive
+[] [warn] TrafficLight: Traffic light type '1000001' subtype '-1' not supported
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [error] Unsupported object type: -1 - interpret as NONE
+[] [info] Loaded OpenDRIVE: C:/esmini/resources/xodr/Town05M.xodr
+[] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[] [info] 3D model search paths attempted for file car_white.osgb:
+[] [info]   ../models/car_white.osgb
+[] [info]   car_white.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_white.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_white.osgb
+[] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_white.osgb
+[] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_white.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_white.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_white.osgb
+[] [warn] 3D model ../models/car_white.osgb not located, using specified file path
+[] [warn] Missing esminiController property, using controller name: ALKS_R157SM_Controller
+[] [info] ALKS_R157SM model: Regulation
+[] [info] ALKS_R157SM logLevel: 2
+[] [info] ALKS_R157SM fullStop: false
+[] [info] ALKS_R157SM alwaysTrigOnScenario: false
+[] [info] ALKS_R157SM cruise: true
+[] [info] Add and deactivate new object "Ego" (id 0)
+[] [info] 3D model search paths attempted for file car_red.osgb:
+[] [info]   ../models/car_red.osgb
+[] [info]   car_red.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_red.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_red.osgb
+[] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_red.osgb
+[] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_red.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_red.osgb
+[] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_red.osgb
+[] [warn] 3D model ../models/car_red.osgb not located, using specified file path
+[] [info] Add and deactivate new object "Obstacle" (id 1)
+[] [info] Parsing global action TrafficAction
+[] [info] 8 parameters:
+[] [info]    SwarmMinorAxis = 40
+[] [info]    SwarmMajorAxis = 200
+[] [info]    SwarmInnerRadius = 20
+[] [info]    SwarmSpeed = 18.0
+[] [info]    SwarmVehicles = 8
+[] [info]    ObstacleS = 550
+[] [info]    EgoInitSpeed = 18.0
+[] [info]    EgoStartS = 400
+[0.000] [info] Swarm IR: 20.00, SMjA: 200.00, SMnA: 40.00, maxV: 8 vel: 18.00
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file car_white.osgb:
+[0.000] [info]   ../models/car_white.osgb
+[0.000] [info]   car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_white.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_white.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_white.osgb
+[0.000] [warn] 3D model ../models/car_white.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [warn] Parameter RefPointXOffset redefined. Previous value 0.0 will be shadowed by 0.0
+[0.000] [info] 3D model search paths attempted for file car_white.osgb:
+[0.000] [info]   ../models/car_white.osgb
+[0.000] [info]   car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_white.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_white.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_white.osgb
+[0.000] [warn] 3D model ../models/car_white.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file car_blue.osgb:
+[0.000] [info]   ../models/car_blue.osgb
+[0.000] [info]   car_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_blue.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_blue.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_blue.osgb
+[0.000] [warn] 3D model ../models/car_blue.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file car_red.osgb:
+[0.000] [info]   ../models/car_red.osgb
+[0.000] [info]   car_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_red.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_red.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_red.osgb
+[0.000] [warn] 3D model ../models/car_red.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file car_yellow.osgb:
+[0.000] [info]   ../models/car_yellow.osgb
+[0.000] [info]   car_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_yellow.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_yellow.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_yellow.osgb
+[0.000] [warn] 3D model ../models/car_yellow.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file truck_yellow.osgb:
+[0.000] [info]   ../models/truck_yellow.osgb
+[0.000] [info]   truck_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/truck_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./truck_yellow.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/truck_yellow.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./truck_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/truck_yellow.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./truck_yellow.osgb
+[0.000] [warn] 3D model ../models/truck_yellow.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file van_red.osgb:
+[0.000] [info]   ../models/van_red.osgb
+[0.000] [info]   van_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/van_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./van_red.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/van_red.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./van_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/van_red.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./van_red.osgb
+[0.000] [warn] 3D model ../models/van_red.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file bus_blue.osgb:
+[0.000] [info]   ../models/bus_blue.osgb
+[0.000] [info]   bus_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/bus_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./bus_blue.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/bus_blue.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./bus_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/bus_blue.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./bus_blue.osgb
+[0.000] [warn] 3D model ../models/bus_blue.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file cyclist.osgb:
+[0.000] [info]   ../models/cyclist.osgb
+[0.000] [info]   cyclist.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/cyclist.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./cyclist.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/cyclist.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./cyclist.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/cyclist.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./cyclist.osgb
+[0.000] [warn] 3D model ../models/cyclist.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file mc.osgb:
+[0.000] [info]   ../models/mc.osgb
+[0.000] [info]   mc.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/mc.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./mc.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/mc.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./mc.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/mc.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./mc.osgb
+[0.000] [warn] 3D model ../models/mc.osgb not located, using specified file path
+[0.000] [info] 3D model search paths attempted for file scooter.osgb:
+[0.000] [info]   ../models/scooter.osgb
+[0.000] [info]   scooter.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/scooter.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./scooter.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/scooter.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./scooter.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/scooter.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./scooter.osgb
+[0.000] [warn] 3D model ../models/scooter.osgb not located, using specified file path
+[0.000] [info] Expr ${150/3.6} = 150/3.6 = 41.6666666667
+[0.000] [info] 3D model search paths attempted for file semi_tractor.osgb:
+[0.000] [info]   ../models/semi_tractor.osgb
+[0.000] [info]   semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_tractor.osgb
+[0.000] [warn] 3D model ../models/semi_tractor.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file car_trailer.osgb:
+[0.000] [info]   ../models/car_trailer.osgb
+[0.000] [info]   car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_trailer.osgb
+[0.000] [warn] 3D model ../models/car_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file truck_trailer.osgb:
+[0.000] [info]   ../models/truck_trailer.osgb
+[0.000] [info]   truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./truck_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/truck_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./truck_trailer.osgb
+[0.000] [warn] 3D model ../models/truck_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_trailer.osgb:
+[0.000] [info]   ../models/semi_trailer.osgb
+[0.000] [info]   semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_trailer.osgb
+[0.000] [warn] 3D model ../models/semi_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file car_white.osgb:
+[0.000] [info]   ../models/car_white.osgb
+[0.000] [info]   car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_white.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_white.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_white.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_white.osgb
+[0.000] [warn] 3D model ../models/car_white.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file car_trailer.osgb:
+[0.000] [info]   ../models/car_trailer.osgb
+[0.000] [info]   car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_trailer.osgb
+[0.000] [warn] 3D model ../models/car_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_tractor.osgb:
+[0.000] [info]   ../models/semi_tractor.osgb
+[0.000] [info]   semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_tractor.osgb
+[0.000] [warn] 3D model ../models/semi_tractor.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_trailer.osgb:
+[0.000] [info]   ../models/semi_trailer.osgb
+[0.000] [info]   semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_trailer.osgb
+[0.000] [warn] 3D model ../models/semi_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file trailer_rotating_axle.osgb:
+[0.000] [info]   ../models/trailer_rotating_axle.osgb
+[0.000] [info]   trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./trailer_rotating_axle.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/trailer_rotating_axle.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./trailer_rotating_axle.osgb
+[0.000] [warn] 3D model ../models/trailer_rotating_axle.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_tractor.osgb:
+[0.000] [info]   ../models/semi_tractor.osgb
+[0.000] [info]   semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_tractor.osgb
+[0.000] [warn] 3D model ../models/semi_tractor.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_trailer.osgb:
+[0.000] [info]   ../models/semi_trailer.osgb
+[0.000] [info]   semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_trailer.osgb
+[0.000] [warn] 3D model ../models/semi_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file truck_trailer.osgb:
+[0.000] [info]   ../models/truck_trailer.osgb
+[0.000] [info]   truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./truck_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/truck_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/truck_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./truck_trailer.osgb
+[0.000] [warn] 3D model ../models/truck_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_tractor.osgb:
+[0.000] [info]   ../models/semi_tractor.osgb
+[0.000] [info]   semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_tractor.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_tractor.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_tractor.osgb
+[0.000] [warn] 3D model ../models/semi_tractor.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_trailer.osgb:
+[0.000] [info]   ../models/semi_trailer.osgb
+[0.000] [info]   semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_trailer.osgb
+[0.000] [warn] 3D model ../models/semi_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file trailer_rotating_axle.osgb:
+[0.000] [info]   ../models/trailer_rotating_axle.osgb
+[0.000] [info]   trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./trailer_rotating_axle.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/trailer_rotating_axle.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/trailer_rotating_axle.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./trailer_rotating_axle.osgb
+[0.000] [warn] 3D model ../models/trailer_rotating_axle.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file semi_trailer.osgb:
+[0.000] [info]   ../models/semi_trailer.osgb
+[0.000] [info]   semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/semi_trailer.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/semi_trailer.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./semi_trailer.osgb
+[0.000] [warn] 3D model ../models/semi_trailer.osgb not located, using specified file path
+[0.000] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[0.000] [info] 3D model search paths attempted for file car_police.osgb:
+[0.000] [info]   ../models/car_police.osgb
+[0.000] [info]   car_police.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/../models/car_police.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal\resources/./car_police.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/../models/car_police.osgb
+[0.000] [info]   C:/adas-thesis/scenarios/S0_controller_demo/./car_police.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//../models/car_police.osgb
+[0.000] [info]   C:\adas-thesis\OpenScenarioDrive\_internal/../resources/models//./car_police.osgb
+[0.000] [warn] 3D model ../models/car_police.osgb not located, using specified file path
+[0.000] [info] Init TrafficAction initState -> startTransition -> runningState
+[0.000] [info] Init Ego TeleportAction initState -> startTransition -> runningState
+[0.000] [info] Starting teleport Action
+[0.000] [info] Ego New position:
+[0.000] [info] Pos(-239.43, 2.49, 10.00) Rot(4.72, 0.00, 0.00) roadId 37 laneId -1 s 400.00 offset 0.00 t -1.75
+[0.000] [info] Init Ego LongitudinalAction initState -> startTransition -> runningState
+[0.000] [info] Controller ALKS_R157SM_Controller active on domains: Lateral & Longitudinal (mask=0x3)
+[0.000] [info] Init Ego ControllerAction initState -> startTransition -> runningState
+[0.000] [info] Init Ego ControllerAction runningState -> endTransition -> completeState
+[0.000] [info] Init Obstacle TeleportAction initState -> startTransition -> runningState
+[0.000] [info] Starting teleport Action
+[0.000] [info] Obstacle New position:
+[0.000] [info] Pos(-230.41, -146.69, 9.64) Rot(5.17, 0.01, 0.00) roadId 37 laneId -1 s 550.00 offset 0.00 t -1.75
+[0.000] [info] Init Obstacle LongitudinalAction initState -> startTransition -> runningState
+[0.000] [info] storyBoard initState -> startTransition -> runningState
+[0.000] [info] MainStory initState -> startTransition -> runningState
+[0.000] [info] EgoAct initState -> initToStandbyTransition -> standbyState
+[0.000] [info] ObstacleAct initState -> initToStandbyTransition -> standbyState
+[0.000] [info] Add and activate new object "swarm_0" (id 2)
+[0.000] [info] Init Ego TeleportAction runningState -> endTransition -> completeState
+[0.000] [info] Init Ego LongitudinalAction runningState -> endTransition -> completeState
+[0.000] [info] Init Obstacle TeleportAction runningState -> endTransition -> completeState
+[0.000] [info] Init Obstacle LongitudinalAction runningState -> endTransition -> completeState
+[0.050] [info] EgoStart: true, delay: 0.00, 0.0500 > 0.0000, edge: none
+[0.050] [info] Trigger /------------------------------------------------
+[0.050] [info] Group 0:
+[0.050] [info] EgoStart: true
+[0.050] [info] Trigger  ------------------------------------------------/
+[0.050] [info] EgoAct standbyState -> startTransition -> runningState
+[0.050] [info] EgoMG initState -> startTransition -> runningState
+[0.050] [info] AvoidanceManeuver initState -> startTransition -> runningState
+[0.050] [info] LaneChangeEvent initState -> initToStandbyTransition -> standbyState
+[0.050] [info] ObstacleStart: true, delay: 0.00, 0.0500 > 0.0000, edge: none
+[0.050] [info] Trigger /------------------------------------------------
+[0.050] [info] Group 0:
+[0.050] [info] ObstacleStart: true
+[0.050] [info] Trigger  ------------------------------------------------/
+[0.050] [info] ObstacleAct standbyState -> startTransition -> runningState
+[0.050] [info] ObstacleMG initState -> startTransition -> runningState
+[0.150] [info] Add and activate new object "swarm_1" (id 3)
+[0.150] [info] Add and activate new object "swarm_1+" (id 4)
+[0.150] [info] Add and activate new object "swarm_1++" (id 5)
+[0.300] [info] Add and activate new object "swarm_2" (id 6)
+[0.300] [info] Add and activate new object "swarm_3" (id 7)
+[0.300] [info] Add and activate new object "swarm_4" (id 8)
+[0.800] [info] Add and activate new object "swarm_5" (id 9)
+[1.050] [info] Add and activate new object "swarm_6" (id 10)
+[1.050] [info] Add and activate new object "swarm_7" (id 11)
+[1.150] [info] Add and activate new object "swarm_8" (id 12)
+[1.350] [info] Add and activate new object "swarm_9" (id 13)
+[1.650] [info] Add and activate new object "swarm_10" (id 14)
+[2.100] [info] Add and activate new object "swarm_11" (id 15)
+[3.000] [info] Add and activate new object "swarm_12" (id 16)
+[3.450] [info] Add and activate new object "swarm_13" (id 17)
+[3.450] [info] Add and activate new object "swarm_13+" (id 18)
+[3.450] [info] Add and activate new object "swarm_13++" (id 19)
+[3.850] [info] DistanceToObstacle: true, delay: 0.00, rel_dist: 79.74 < 80.00, edge: rising
+[3.850] [info] Trigger /------------------------------------------------
+[3.850] [info] Group 0:
+[3.850] [info] DistanceToObstacle: true
+[3.850] [info] Triggering entity 0: Ego
+[3.850] [info] Trigger  ------------------------------------------------/
+[3.850] [info] LaneChangeEvent standbyState -> startTransition -> runningState
+[3.850] [warn] Deactivating ctrl ALKS_R157SM_Controller conflicting on domain Longitudinal (< osc v1.3)
+[3.850] [info] Controller ALKS_R157SM_Controller active on domains: Longitudinal (mask=0x1)
+[3.850] [info] SuspendLKA initState -> startTransition -> runningState
+[3.850] [info] SuspendLKA runningState -> endTransition -> completeState
+[3.850] [info] LaneChangeEvent complete after 1 execution
+[3.850] [info] LaneChangeEvent runningState -> endTransition -> completeState
+[3.850] [info] AvoidanceManeuver runningState -> endTransition -> completeState
+[3.850] [info] EgoMG complete after 1 execution
+[3.850] [info] EgoMG runningState -> endTransition -> completeState
+[3.850] [info] EgoAct runningState -> endTransition -> completeState
+[3.900] [info] Closing

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="1" date="2026-05-01T00:00:00" description="AEB friction test wet 80kph" author="HasnainBadar"/>
+  <CatalogLocations>
+    <VehicleCatalog><Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/></VehicleCatalog>
+    <ControllerCatalog><Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/></ControllerCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network_friction_wet.xodr"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <Controller name="ALKS_R157SM_Controller">
+          <Properties>
+            <Property name="model" value="Regulation"/>
+            <Property name="logLevel" value="2"/>
+            <Property name="cruise" value="true"/>
+          </Properties>
+        </Controller>
+      </ObjectController>
+    </ScenarioObject>
+    <ScenarioObject name="Obstacle">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction><Position><LanePosition roadId="1" laneId="-1" offset="0" s="100.0"/></Position></TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget><AbsoluteTargetSpeed value="22.222"/></SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction><ActivateControllerAction longitudinal="true" lateral="false"/></ControllerAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="Obstacle">
+          <PrivateAction>
+            <TeleportAction><Position><LanePosition roadId="1" laneId="-1" offset="0" s="277.778"/></Position></TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget><AbsoluteTargetSpeed value="0"/></SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="MainStory">
+      <Act name="Act1">
+        <ManeuverGroup maximumExecutionCount="1" name="MG1">
+          <Actors selectTriggeringEntities="false"><EntityRef entityRef="Ego"/></Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition><SimulationTimeCondition value="0" rule="greaterThan"/></ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="Stop" delay="0" conditionEdge="none">
+          <ByValueCondition><SimulationTimeCondition value="20" rule="greaterThan"/></ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>

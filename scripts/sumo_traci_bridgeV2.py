@@ -41,7 +41,7 @@ import traci.constants as tc
 SUMO_EXE    = r"C:\Program Files (x86)\Eclipse\Sumo\bin\sumo.exe"
 CFG_FILE    = r"C:\adas-thesis\maps\adas_network.sumocfg"
 NET_FILE    = r"C:\adas-thesis\maps\adas_network.net.xml"
-ROU_FILE    = r"C:\adas-thesis\maps\adas_network.rou.xml"
+ROU_FILE    = r"C:\adas-thesis\maps\adas_networkV2.rou.xml"
 
 TRACI_PORT  = 8813
 ESMINI_HOST = "127.0.0.1"
@@ -206,20 +206,7 @@ def main():
             # ego_s increases as Ego drives forward.
             # EGO_GHOST s in SUMO = EGO_START_S + (ego_s - EGO_START_S)
             if ego_ready and "EGO_GHOST" in traci.vehicle.getIDList():
-                try:
-                    ex, ey = s_to_world(ego_s, -1)
-                    traci.vehicle.moveToXY(
-                        "EGO_GHOST",
-                        edgeID    = "1",
-                        laneIndex = 0,
-                        x         = ex + 941.68,  # convert esmini world to SUMO coords
-                        y         = ey + 598.97,  # verified offset from earlier
-                        angle     = math.degrees(ROAD1_HDG),
-                        keepRoute = 1
-                    )
-                    traci.vehicle.setSpeed("EGO_GHOST", ego_speed)
-                except Exception:
-                    pass
+                traci.vehicle.setSpeed("EGO_GHOST", ego_speed)
 
             # ── Step SUMO ─────────────────────────────────────────────────
             traci.simulationStep()
@@ -275,8 +262,16 @@ def main():
                     b_kph     = spd * 3.6
 
             if step % 40 == 0:
-                print(f"{step:6d}  {a_s_disp:7.1f}  {a_kph:6.1f}  "
-                      f"{b_s_disp:7.1f}  {b_kph:6.1f}  {ego_s:7.1f}")
+                # Show EGO_GHOST position in SUMO for debugging
+                ego_sumo_s = 0.0
+                if "EGO_GHOST" in traci.vehicle.getIDList():
+                    ego_sumo_s = traci.vehicle.getLanePosition("EGO_GHOST")
+                    leader = traci.vehicle.getLeader("NPC_A", 500) if "NPC_A" in traci.vehicle.getIDList() else None
+                else:
+                    leader = None
+                print(f"{step:6d}  A_s={a_s_disp:6.1f} {a_kph:5.1f}kph  "
+                      f"B_s={b_s_disp:6.1f} {b_kph:5.1f}kph  "
+                      f"EgoSUMO_s={ego_sumo_s:6.1f}  NPC_A_leader={leader}")
 
             step += 1
 

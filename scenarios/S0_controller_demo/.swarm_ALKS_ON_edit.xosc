@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ADAS THESIS - Swarm Traffic Scenario
+  Version  : ALKS ON (ADAS active)
+  Map      : adas_network.xodr
+  Ego      : ALKS_R157SM_Controller (Level 3 autonomy)
+  NPCs     : 8 vehicles via TrafficSwarmAction — spawn around Ego automatically
+  ALKS     : ON — Ego has AEB + ACC + Lane Keeping
+
+  WHAT THIS SHOWS:
+    Ego is controlled by ALKS (Automated Lane Keeping System).
+    ALKS automatically:
+      - Maintains safe following distance (ACC)
+      - Brakes for vehicles that cut in (AEB)
+      - Keeps vehicle centred in lane (LKA)
+    8 NPC vehicles spawn around Ego continuously.
+    Compare with ALKS_OFF version — Ego should never collide here.
+
+  ALKS PROPERTIES (from alks_r157_cut_in_quick_brake.xosc):
+    model=Regulation : uses ECE R157 safety regulation model
+    logLevel=2       : prints ALKS decisions to console (useful for demo)
+    cruise=true      : ACC active — maintains speed and following distance
+
+  HOW TO RUN:
+    cd C:\esmini
+    .\bin\esmini --osc C:\adas-thesis\scenarios\S0_controller_demo\swarm_ALKS_ON.xosc ^
+                 --window 60 60 1200 600
+
+  WHAT TO WATCH:
+    - Ego (white) automatically slows when NPCs are close ahead
+    - Ego brakes if a vehicle cuts in front
+    - Console prints ALKS decisions (AEB trigger, ACC adjustments)
+    - Press Tab to switch camera — follow Ego or watch from outside
+
+  FOR SCREENSHOTS:
+    Press F5 in esmini window to screenshot.
+-->
+<OpenSCENARIO>
+
+  <FileHeader revMajor="1" revMinor="1"
+              date="2026-01-01T00:00:00"
+              description="Swarm traffic ALKS ON - ADAS thesis"
+              author="HasnainBadar"/>
+
+  <ParameterDeclarations>
+    <ParameterDeclaration name="EgoStartS"       parameterType="double"  value="400"/>
+    <ParameterDeclaration name="EgoInitSpeed"    parameterType="double"  value="22.2"/>
+    <ParameterDeclaration name="SwarmVehicles"   parameterType="integer" value="8"/>
+    <ParameterDeclaration name="SwarmSpeed"      parameterType="double"  value="22.2"/>
+    <ParameterDeclaration name="SwarmInnerRadius" parameterType="double" value="20"/>
+    <ParameterDeclaration name="SwarmMajorAxis"   parameterType="double" value="200"/>
+    <ParameterDeclaration name="SwarmMinorAxis"   parameterType="double" value="30"/>
+  </ParameterDeclarations>
+
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+  </RoadNetwork>
+
+  <Entities>
+    <!--
+      Ego: ALKS_R157SM_Controller defined inline with Properties.
+      Pattern verified from alks_r157_cut_in_quick_brake.xosc.
+      model=Regulation uses the ECE R157 safety regulation.
+      cruise=true enables ACC (adaptive cruise control).
+      logLevel=2 prints ALKS decisions to console.
+    -->
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <Controller name="ALKS_R157SM_Controller">
+          <Properties>
+            <Property name="model"    value="Regulation"/>
+            <Property name="logLevel" value="2"/>
+            <Property name="cruise"   value="true"/>
+          </Properties>
+        </Controller>
+      </ObjectController>
+    </ScenarioObject>
+  </Entities>
+
+  <Storyboard>
+    <Init>
+      <Actions>
+
+        <!--
+          GLOBAL: Same swarm as ALKS_OFF version.
+          Identical parameters to compare.
+          Only difference: Ego controller.
+        -->
+        <GlobalAction>
+          <TrafficAction>
+            <TrafficSwarmAction
+              innerRadius="$SwarmInnerRadius"
+              semiMajorAxis="$SwarmMajorAxis"
+              semiMinorAxis="$SwarmMinorAxis"
+              numberOfVehicles="$SwarmVehicles"
+              velocity="$SwarmSpeed"
+              offset="0">
+              <CentralObject entityRef="Ego"/>
+            </TrafficSwarmAction>
+          </TrafficAction>
+        </GlobalAction>
+
+        <!--
+          Ego Init:
+          Step 1: Place at same position as ALKS_OFF for fair comparison
+          Step 2: Activate ALKS longitudinally — pattern from alks_r157_cut_in_quick_brake.xosc
+                  longitudinal=true  = ALKS controls braking and acceleration (AEB + ACC)
+                  lateral=false      = lane keeping is separate (not activated here)
+          Step 3: Set initial speed — ALKS will then maintain this as cruise speed
+        -->
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="$EgoStartS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$EgoInitSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <ActivateControllerAction longitudinal="true" lateral="false"/>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init>
+
+    <!-- Minimal story — swarm and ALKS handle everything -->
+    <Story name="MainStory">
+      <Act name="MainAct">
+        <ManeuverGroup maximumExecutionCount="1" name="MainMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="ActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="SimTimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="180" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

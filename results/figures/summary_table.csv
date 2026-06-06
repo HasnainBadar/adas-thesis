@@ -1,0 +1,13 @@
+Scenario,Speed_kph,Surface,Data_source,Stopping_dist_m,Gap_at_stop_m,Collision,AEB_trigger_t_s,Ego_stop_t_s
+AEB 50kph,50,dry,simulated,103.74,2.87,False,4.85,13.6
+AEB 50kph,50,damp,physics_model,172.9,,,,
+AEB 50kph,50,wet,physics_model,259.35,,,,
+AEB 50kph,50,icy,physics_model,518.7,,,,
+AEB 80kph,80,dry,simulated,185.46,3.18,False,6.05,20.05
+AEB 80kph,80,damp,physics_model,309.1,,,,
+AEB 80kph,80,wet,physics_model,463.65,,,,
+AEB 80kph,80,icy,physics_model,927.3,,,,
+AEB 120kph,120,dry,simulated,643.13,371.96,False,6.75,20.05
+AEB 120kph,120,damp,physics_model,1071.88,,,,
+AEB 120kph,120,wet,physics_model,1607.83,,,,
+AEB 120kph,120,icy,physics_model,3215.65,,,,

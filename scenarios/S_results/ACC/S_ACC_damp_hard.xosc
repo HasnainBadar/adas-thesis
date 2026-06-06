@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RESULT SCENARIO: ACC DAMP - HARD BRAKING
+  ═══════════════════════════════════════════════════════════════
+  Surface         : damp (mu=0.6)
+  Road            : adas_network_friction_damp.xodr, Road 1 lane -1
+  ───────────────────────────────────────────────────────────────
+  Ego             : s=50.0m, 27.78 m/s (100kph), ALKS longitudinal=true
+  NPC (lead)      : s=120.0m, 27.78 m/s, gap = 70m
+  NPC brakes at   : t=5s, decel = 8.0 m/s2 (dynamicsDimension=rate)
+  NPC stop dist   : 48.23m (stops at s=168.2m after 3.47s)
+  ───────────────────────────────────────────────────────────────
+  Ego max decel   : 5.89 m/s2 (mu x g = 0.6 x 9.81)
+  ALKS reaction   : ~0.6s = 16.7m travel before braking
+  Predicted gap   : 36.1m -> SAFE
+  ───────────────────────────────────────────────────────────────
+  EXPECTED RESULTS BY SURFACE (this NPC decel = 8.0 m/s2):
+    dry  (max 9.81 m/s2)  -> SAFE  gap=53.3m
+    damp (max 5.89 m/s2)  -> SAFE  gap=36.1m
+    wet  (max 3.92 m/s2)  -> COLLISION  gap=3.1m
+    icy  (max 1.96 m/s2)  -> COLLISION  gap=-95.3m
+  ───────────────────────────────────────────────────────────────
+  Measure         : min gap (m), Ego decel profile, collision flag
+  Record until    : 35s
+  ═══════════════════════════════════════════════════════════════
+  Run:
+    cd C:\esmini
+    .\bin\esmini --osc C:\adas-thesis\scenarios\S_results\ACC\S_ACC_damp_hard.xosc ^
+                 --fixed_timestep 0.05 --headless ^
+                 --record C:\adas-thesis\results\raw\S_ACC_damp_hard.dat
+-->
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="2"
+              date="2026-01-01T00:00:00"
+              description="ACC damp NPC_decel=8.0m/s2 (hard) | mu=0.6 | predicted=SAFE"
+              author="HasnainBadar"/>
+  <ParameterDeclarations/>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network_friction_damp.xodr"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <Controller name="ALKS_R157SM_Controller">
+          <Properties>
+            <Property name="model"    value="Regulation"/>
+            <Property name="logLevel" value="2"/>
+            <Property name="cruise"   value="true"/>
+          </Properties>
+        </Controller>
+      </ObjectController>
+    </ScenarioObject>
+    <ScenarioObject name="NPC">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <!-- Ego: start at s=50.0m, 100kph, ALKS active -->
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="50.0">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step"
+                                     dynamicsDimension="time"
+                                     value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="27.78"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <ActivateControllerAction longitudinal="true" lateral="false"/>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+        <!-- NPC: start at s=120.0m, same speed, 70m ahead -->
+        <Private entityRef="NPC">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="120.0">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step"
+                                     dynamicsDimension="time"
+                                     value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="27.78"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="MainStory">
+
+      <!-- NPC brakes at t=5s using rate-based decel so physics are explicit -->
+      <Act name="NPC_Act">
+        <ManeuverGroup maximumExecutionCount="1" name="NPC_MG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="NPC"/>
+          </Actors>
+          <Maneuver name="NPC_BrakeManeuver">
+            <Event name="NPC_BrakeEvent" priority="overwrite">
+              <Action name="NPC_BrakeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <!-- rate = decel in m/s2, physics-based not time-based -->
+                      <SpeedActionDynamics dynamicsShape="linear"
+                                           dynamicsDimension="rate"
+                                           value="8.0"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="NPCBrakeTrigger" delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="5" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+      <!-- Ego Act: ALKS runs autonomously, no scripted maneuver needed -->
+      <Act name="Ego_Act">
+        <ManeuverGroup maximumExecutionCount="1" name="Ego_MG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="TimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="35" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>

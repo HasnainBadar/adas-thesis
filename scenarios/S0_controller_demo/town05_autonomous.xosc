@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+=======================================================================
+ADAS THESIS - Fully Autonomous Mixed Traffic Scenario
+Student  : HasnainBadar
+Map      : Town05M.xodr
+File     : C:\adas-thesis\scenarios\S0_controller_demo\town05_autonomous.xosc
+
+WHAT THIS DEMONSTRATES:
+  1. Highway platooning — 3 ALKS vehicles maintain ACC gap at 65 kph
+  2. Human-like traffic — 3 sloppyDriver vehicles with natural variation
+  3. Pedestrian detection — ALKS vehicle brakes for crossing pedestrian
+  4. Traffic jam + resume — chain braking then flow restoration
+  5. Urban traffic — sloppyDriver vehicles at 35 kph on urban roads
+
+ROAD ASSIGNMENTS (from Town05M.xodr analysis):
+  Road 37: highway 814m, 65 kph, lanes -1 -2 -3 (driving direction)
+  Road 19: urban   215m, 35 kph, lanes -1 -2
+  Road 20: urban   215m, 35 kph, lanes -1 -2
+  Road  9: urban   122m, 55 kph, lanes -1    (pedestrian crossing here)
+
+HOW TO RUN:
+  cd C:\esmini
+  .\bin\esmini --osc C:\adas-thesis\scenarios\S0_controller_demo\town05_autonomous.xosc ^
+               --window 60 60 1600 900
+
+CAMERA TIPS (press in esmini window):
+  Tab       = cycle through vehicles (follow each NPC)
+  Space     = toggle camera mode
+  Ctrl+Tab  = next entity
+=======================================================================
+-->
+<OpenSCENARIO>
+
+  <FileHeader revMajor="1" revMinor="0"
+              date="2025-01-01T00:00:00"
+              description="Fully autonomous mixed traffic — Town05M"
+              author="HasnainBadar"/>
+
+  <ParameterDeclarations>
+    <!-- Highway speeds -->
+    <ParameterDeclaration name="HwySpeed"    parameterType="double" value="18.0"/>
+    <!-- 18 m/s = 65 kph -->
+    <!-- Urban speed -->
+    <ParameterDeclaration name="UrbanSpeed"  parameterType="double" value="9.7"/>
+    <!-- 9.7 m/s = 35 kph -->
+    <!-- Pedestrian crossing road speed -->
+    <ParameterDeclaration name="CrossSpeed"  parameterType="double" value="15.3"/>
+    <!-- 15.3 m/s = 55 kph -->
+    <!-- Pedestrian walk speed -->
+    <ParameterDeclaration name="PedSpeed"    parameterType="double" value="1.2"/>
+    <!-- Gap between ALKS vehicles on highway -->
+    <ParameterDeclaration name="AlksGap"     parameterType="double" value="40.0"/>
+  </ParameterDeclarations>
+
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+    <PedestrianCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Pedestrians"/>
+    </PedestrianCatalog>
+  </CatalogLocations>
+
+  <RoadNetwork>
+    <LogicFile filepath="C:/esmini/resources/xodr/Town05M.xodr"/>
+  </RoadNetwork>
+
+  <!-- ================================================================
+       ENTITIES
+       Naming convention:
+         Hwy_ALKS_1/2/3  = highway ALKS Level 3 vehicles
+         Hwy_Slp_1/2/3   = highway sloppyDriver human-like vehicles
+         Urb_A/B         = urban sloppyDriver Road 19
+         Urb_C           = urban ALKS Road 9 (will stop for pedestrian)
+         Urb_D           = urban sloppyDriver Road 9 (behind Urb_C)
+         Urb_E/F         = urban sloppyDriver Road 20
+         Pedestrian_1    = crosses Road 9, stops midway
+  ================================================================ -->
+  <Entities>
+
+    <!-- ── HIGHWAY ALKS VEHICLES (Road 37, inner lane -1) ──────────── -->
+    <!--
+      ALKS_R157SM_Controller provides:
+        - Adaptive Cruise Control (maintains gap to vehicle ahead)
+        - Autonomous Emergency Braking
+        - Lane keeping
+      These 3 vehicles form a platoon at 65 kph
+    -->
+    <ScenarioObject name="Hwy_ALKS_1">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="ALKS_R157SM_Controller"/>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Hwy_ALKS_2">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="ALKS_R157SM_Controller"/>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Hwy_ALKS_3">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="ALKS_R157SM_Controller"/>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!-- ── HIGHWAY SLOPPY VEHICLES (Road 37, outer lane -2) ────────── -->
+    <!--
+      sloppyDriver mode=additive:
+        - Follows road geometry
+        - Adds human-like imperfection (slight weaving, speed variation)
+        - Sloppiness=0.5 = moderate human variation
+    -->
+    <ScenarioObject name="Hwy_Slp_1">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.5"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Hwy_Slp_2">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.3"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Hwy_Slp_3">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.7"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!-- ── URBAN VEHICLES Road 19 ───────────────────────────────────── -->
+    <ScenarioObject name="Urb_A">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.4"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Urb_B">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.6"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!-- ── ROAD 9 VEHICLES (pedestrian crossing section) ───────────── -->
+    <!--
+      Urb_C is ALKS — it will detect Pedestrian_1 and brake.
+      Urb_D is behind Urb_C — will brake due to RelativeDistanceCondition.
+      This creates the traffic jam effect.
+    -->
+    <ScenarioObject name="Urb_C">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="ALKS_R157SM_Controller"/>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Urb_D">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.4"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!-- ── URBAN VEHICLES Road 20 ───────────────────────────────────── -->
+    <ScenarioObject name="Urb_E">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.5"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Urb_F">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="sloppyDriver">
+          <ParameterAssignments>
+            <ParameterAssignment parameterRef="Sloppiness" value="0.3"/>
+            <ParameterAssignment parameterRef="Mode"       value="additive"/>
+          </ParameterAssignments>
+        </CatalogReference>
+      </ObjectController>
+    </ScenarioObject>
+
+    <!-- ── PEDESTRIAN ────────────────────────────────────────────────── -->
+    <!--
+      Pedestrian walks across Road 9 perpendicular to traffic.
+      Stops midway (in traffic lane) for 5 seconds.
+      Urb_C (ALKS) will detect and brake.
+      After pedestrian clears, Urb_C resumes.
+    -->
+    <ScenarioObject name="Pedestrian_1">
+      <Pedestrian model="pedestrian_adult"
+                  mass="80"
+                  name="Pedestrian_1"
+                  pedestrianCategory="pedestrian">
+        <BoundingBox>
+          <Center x="0" y="0" z="0.9"/>
+          <Dimensions width="0.5" length="0.5" height="1.8"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="model_id" value="0"/>
+        </Properties>
+      </Pedestrian>
+    </ScenarioObject>
+
+  </Entities>
+
+  <!-- ================================================================
+       STORYBOARD
+  ================================================================ -->
+  <Storyboard>
+
+    <!-- ── INIT ─────────────────────────────────────────────────────── -->
+    <Init>
+      <Actions>
+
+        <!-- HWY_ALKS_1: Road 37, lane -1, s=600 (leading platoon vehicle) -->
+        <Private entityRef="Hwy_ALKS_1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-1" offset="0" s="600">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$HwySpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- HWY_ALKS_2: Road 37, lane -1, s=540 (40m behind ALKS_1) -->
+        <Private entityRef="Hwy_ALKS_2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-1" offset="0" s="540">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$HwySpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- HWY_ALKS_3: Road 37, lane -1, s=480 (40m behind ALKS_2) -->
+        <Private entityRef="Hwy_ALKS_3">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-1" offset="0" s="480">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$HwySpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- HWY_SLP_1: Road 37, lane -2, s=550 -->
+        <Private entityRef="Hwy_Slp_1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-2" offset="0" s="550">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$HwySpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- HWY_SLP_2: Road 37, lane -2, s="470" -->
+        <Private entityRef="Hwy_Slp_2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-2" offset="0" s="470">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$HwySpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- HWY_SLP_3: Road 37, lane -3, s="510" -->
+        <Private entityRef="Hwy_Slp_3">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-3" offset="0" s="510">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$HwySpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- URB_A: Road 19, lane -1, s=50 -->
+        <Private entityRef="Urb_A">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="19" laneId="-1" offset="0" s="50">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$UrbanSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- URB_B: Road 19, lane -1, s=100 -->
+        <Private entityRef="Urb_B">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="19" laneId="-1" offset="0" s="100">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$UrbanSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- URB_C: Road 9, lane -1, s=20 (ALKS — will stop for pedestrian) -->
+        <Private entityRef="Urb_C">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="9" laneId="-1" offset="0" s="20">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$CrossSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- URB_D: Road 9, lane -1, s=0 (behind Urb_C, will also stop) -->
+        <Private entityRef="Urb_D">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="9" laneId="-1" offset="0" s="0">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$CrossSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- URB_E: Road 20, lane -1, s=50 -->
+        <Private entityRef="Urb_E">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="20" laneId="-1" offset="0" s="50">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$UrbanSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- URB_F: Road 20, lane -1, s=120 -->
+        <Private entityRef="Urb_F">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="20" laneId="-1" offset="0" s="120">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$UrbanSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+        <!--
+          PEDESTRIAN_1: Starts on sidewalk of Road 9.
+          Placed at s=60 (midpoint of 122m road), offset=3m into road.
+          Will walk perpendicular — we use WorldPosition with heading
+          perpendicular to road heading (3.14 rad = opposite of road).
+          Road 9 heading = 3.14 rad (westward).
+          Perpendicular = 1.57 rad (southward across road).
+        -->
+        <Private entityRef="Pedestrian_1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <!--
+                  Road 9 starts at x=-202.5, y=89.9, hdg=3.14
+                  s=60 puts pedestrian at midpoint of road
+                  offset=4 places them on the right side (sidewalk side)
+                  before they step into traffic
+                -->
+                <LanePosition roadId="9" laneId="-1" offset="4" s="60">
+                  <Orientation type="absolute" h="1.57"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init>
+
+    <!-- ================================================================
+         STORY 1: PEDESTRIAN CROSSING
+         Pedestrian walks into road at t=5s, stops for 5s, then clears.
+         Urb_C (ALKS) detects and brakes. Urb_D brakes due to gap condition.
+    ================================================================ -->
+    <Story name="PedestrianCrossing">
+
+      <!-- ACT 1: Pedestrian steps into road -->
+      <Act name="PedWalkAct">
+        <ManeuverGroup maximumExecutionCount="1" name="PedWalkMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Pedestrian_1"/>
+          </Actors>
+          <Maneuver name="PedWalkManeuver">
+
+            <!-- Event 1: Walk into road (southward across lane) -->
+            <Event name="PedWalkIntoRoad" priority="overwrite">
+              <Action name="PedWalkAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="$PedSpeed"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <!-- Pedestrian starts walking at t=5s -->
+                  <Condition name="PedStartCondition" delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="5" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+
+            <!-- Event 2: Pedestrian stops in middle of road -->
+            <Event name="PedStopInRoad" priority="overwrite">
+              <Action name="PedStopAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="time" value="0.5"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <!-- Stop after walking 3 seconds into road -->
+                  <Condition name="PedStopCondition" delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="8" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+
+            <!-- Event 3: Pedestrian resumes crossing after 5s stop -->
+            <Event name="PedResumeWalk" priority="overwrite">
+              <Action name="PedResumeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="$PedSpeed"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <!-- Resume after 5 second stop -->
+                  <Condition name="PedResumeCondition" delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="13" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="PedActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+    </Story>
+
+    <!-- ================================================================
+         STORY 2: URB_D BRAKING (chain brake behind Urb_C)
+         Urb_D brakes when it gets within 15m of Urb_C.
+         Urb_C will already be slowing due to ALKS detecting pedestrian.
+         This creates the traffic jam chain effect.
+    ================================================================ -->
+    <Story name="UrbanChainBrake">
+
+      <!-- ACT: Urb_D brakes when too close to Urb_C -->
+      <Act name="UrbD_BrakeAct">
+        <ManeuverGroup maximumExecutionCount="5" name="UrbD_BrakeMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Urb_D"/>
+          </Actors>
+          <Maneuver name="UrbD_BrakeManeuver">
+            <Event name="UrbD_BrakeEvent" priority="overwrite">
+              <Action name="UrbD_BrakeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear"
+                                           dynamicsDimension="rate"
+                                           value="-3"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="UrbD_GapCondition" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="Urb_D"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition
+                          entityRef="Urb_C"
+                          relativeDistanceType="longitudinal"
+                          value="15"
+                          freespace="true"
+                          rule="lessThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="UrbD_BrakeActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+      <!-- ACT: Urb_D resumes when gap opens -->
+      <Act name="UrbD_ResumeAct">
+        <ManeuverGroup maximumExecutionCount="5" name="UrbD_ResumeMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Urb_D"/>
+          </Actors>
+          <Maneuver name="UrbD_ResumeManeuver">
+            <Event name="UrbD_ResumeEvent" priority="overwrite">
+              <Action name="UrbD_ResumeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear"
+                                           dynamicsDimension="time"
+                                           value="3"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="$CrossSpeed"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="UrbD_ResumeCondition" delay="2" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="Urb_D"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition
+                          entityRef="Urb_C"
+                          relativeDistanceType="longitudinal"
+                          value="25"
+                          freespace="true"
+                          rule="greaterThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="UrbD_ResumeActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+    </Story>
+
+    <!-- ================================================================
+         STOP TRIGGER: Run for 3 minutes — enough to show full scenario
+    ================================================================ -->
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="SimTimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="180" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

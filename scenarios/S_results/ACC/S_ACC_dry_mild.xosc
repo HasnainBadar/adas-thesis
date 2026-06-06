@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RESULT SCENARIO: ACC DRY MILD
+  Surface    : dry (mu=1.0)
+  Road       : adas_network_friction_dry.xodr, Road 1 lane -1
+  Ego        : s=50.0m, 27.78 m/s (100kph), ALKS ACC active
+  NPC        : s=120.0m, 27.78 m/s, brakes at t=5s
+  NPC decel  : 2.943 m/s2 = mu*g*0.3 (mild)
+  Measure    : min gap, Ego decel profile, collision flag
+  Run:
+    cd C:\esmini
+    .\bin\esmini --osc C:\adas-thesis\scenarios\S_results\ACC\S_ACC_dry_mild.xosc ^
+                 --fixed_timestep 0.05 --headless ^
+                 --record C:\adas-thesis\results\raw\S_ACC_dry_mild.dat
+-->
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="2"
+              date="2026-01-01T00:00:00"
+              description="ACC dry mu=1.0 NPC decel=2.943m/s2 (mild)"
+              author="HasnainBadar"/>
+  <ParameterDeclarations/>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network_friction_dry.xodr"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <Controller name="ALKS_R157SM_Controller">
+          <Properties>
+            <Property name="model" value="Regulation"/>
+            <Property name="logLevel" value="2"/>
+            <Property name="cruise" value="true"/>
+          </Properties>
+        </Controller>
+      </ObjectController>
+    </ScenarioObject>
+    <ScenarioObject name="NPC">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="50.0">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="27.78"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <ActivateControllerAction longitudinal="true" lateral="false"/>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="NPC">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="120.0">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="27.78"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="MainStory">
+      <Act name="NPC_Act">
+        <ManeuverGroup maximumExecutionCount="1" name="NPC_MG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="NPC"/>
+          </Actors>
+          <Maneuver name="NPC_Brake">
+            <Event name="NPC_BrakeEvent" priority="overwrite">
+              <Action name="NPC_BrakeAction">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear"
+                                           dynamicsDimension="rate"
+                                           value="2.943"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="NPC_BrakeTrigger" delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="5" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+      <Act name="EgoAct">
+        <ManeuverGroup maximumExecutionCount="1" name="EgoMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="TimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="40" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RESULT SCENARIO: LKA WET MED
+  Surface    : wet (mu=0.4)
+  Road       : adas_network_friction_wet.xodr, Road 20 S-curve lane -1
+  Ego        : s=10m, 22.22 m/s (80kph), ALKS lateral=true
+  Drift      : LaneOffsetAction offset=1.2m maxLatAcc=0.3 at t=3s
+  ALKS LKA   : autonomous lane-keep correction
+  Measure    : lateral deviation (m), correction time, whether lane boundary crossed
+  Note       : LKA is a steering function. Differences across surfaces may be
+               small but show controller robustness. Finding = LKA is surface-robust.
+  Run:
+    cd C:\esmini
+    .\bin\esmini --osc C:\adas-thesis\scenarios\S_results\LKA\S_LKA_wet_med.xosc ^
+                 --fixed_timestep 0.05 --headless ^
+                 --record C:\adas-thesis\results\raw\S_LKA_wet_med.dat
+-->
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="2"
+              date="2026-01-01T00:00:00"
+              description="LKA wet mu=0.4 drift=med maxLatAcc=0.3"
+              author="HasnainBadar"/>
+  <ParameterDeclarations/>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network_friction_wet.xodr"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <Controller name="ALKS_R157SM_Controller">
+          <Properties>
+            <Property name="model" value="Regulation"/>
+            <Property name="logLevel" value="2"/>
+            <Property name="cruise" value="true"/>
+          </Properties>
+        </Controller>
+      </ObjectController>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="20" laneId="-1" offset="0" s="10">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="22.22"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <ActivateControllerAction longitudinal="true" lateral="true"/>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="MainStory">
+      <Act name="EgoAct">
+        <ManeuverGroup maximumExecutionCount="1" name="EgoMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+          <Maneuver name="DriftManeuver">
+            <Event name="DriftEvent" priority="override">
+              <Action name="DriftAction">
+                <PrivateAction>
+                  <LateralAction>
+                    <LaneOffsetAction continuous="true">
+                      <LaneOffsetActionDynamics maxLateralAcc="0.3"
+                                                dynamicsShape="linear"/>
+                      <LaneOffsetTarget>
+                        <AbsoluteTargetLaneOffset value="1.2"/>
+                      </LaneOffsetTarget>
+                    </LaneOffsetAction>
+                  </LateralAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="DriftTrigger" delay="0" conditionEdge="none">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="3" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="TimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="25" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>

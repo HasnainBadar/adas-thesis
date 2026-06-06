@@ -1,0 +1,13 @@
+Speed_kph,Surface,mu,Stopping_dist_m,Data_source,Collision,AEB_trigger_t_s,ALKS_mode,Note
+50,dry,1.0,36.54,simulated,False,3.35,TARGET_IN_SIGHT,safe
+50,damp,0.6,60.9,physics_model,N/A,N/A,TARGET_IN_SIGHT,
+50,wet,0.4,91.35,physics_model,N/A,N/A,TARGET_IN_SIGHT,
+50,icy,0.2,182.7,physics_model,N/A,N/A,TARGET_IN_SIGHT,
+80,dry,1.0,38.4,simulated,True,4.35,CRITICAL,gap 0.48m at min speed
+80,damp,0.6,64.0,physics_model,N/A,N/A,CRITICAL,
+80,wet,0.4,96.0,physics_model,N/A,N/A,CRITICAL,
+80,icy,0.2,192.0,physics_model,N/A,N/A,CRITICAL,
+120,dry,1.0,37.29,simulated,True,5.5,CRITICAL,gap 0m at min speed
+120,damp,0.6,62.15,physics_model,N/A,N/A,CRITICAL,
+120,wet,0.4,93.22,physics_model,N/A,N/A,CRITICAL,
+120,icy,0.2,186.45,physics_model,N/A,N/A,CRITICAL,

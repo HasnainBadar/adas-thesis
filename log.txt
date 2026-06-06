@@ -1,0 +1,74 @@
+esmini GIT REV: v2.60.0-0-77b4bbc0
+esmini GIT TAG: v2.60.0
+esmini GIT BRANCH: tags/v2.60.0^0
+esmini BUILD VERSION: 5977
+[] [info] Loaded config file: C:\esmini\config.yml (C:\esmini\bin\..\config.yml)
+[] [info] Loaded C:\adas-thesis\scenarios\S_results\AEB_v2\S_AEB_icy_120kph.xosc
+[2026-06-06 23:05:16]
+[] [info] Player options: --osc C:\adas-thesis\scenarios\S_results\AEB_v2\S_AEB_icy_120kph.xosc --camera_mode orbit --fixed_timestep 0.05 --ground_plane auto --headless --info_text 1 --logfile_path log.txt --log_level info --record C:\adas-thesis\results\raw\S_AEB_icy_120kph.dat --text_scale 1.0 --traj_filter 0.1 
+[] [info] Run simulation decoupled from realtime, with fixed timestep: 0.05
+[] [info] Generated seed 596070205
+[] [info] Loading C:/adas-thesis/scenarios/S_results/AEB_v2/S_AEB_icy_120kph.xosc (v1.2)
+[] [info] 0 variables
+[] [info] Signal Type 1000001.10 doesn't exists for country de
+[] [info] Loaded OpenDRIVE: C:/adas-thesis/maps/adas_network_friction_icy.xodr
+[] [info] Expr ${250/3.6} = 250/3.6 = 69.4444444444
+[] [warn] Missing esminiController property, using controller name: ALKS_R157SM_Controller
+[] [info] ALKS_R157SM model: Regulation
+[] [info] ALKS_R157SM logLevel: 2
+[] [info] ALKS_R157SM fullStop: false
+[] [info] ALKS_R157SM alwaysTrigOnScenario: false
+[] [info] ALKS_R157SM cruise: true
+[] [info] 0 parameters
+[0.000] [info] Recording data to file C:\adas-thesis\results\raw\S_AEB_icy_120kph.dat
+[0.000] [info] Init Ego TeleportAction initState -> startTransition -> runningState
+[0.000] [info] Starting teleport Action
+[0.000] [info] Ego New position:
+[0.000] [info] Pos(-394.19, -86.37, 0.00) Rot(3.89, 0.00, 0.00) roadId 1 laneId -1 s 50.00 offset 0.00 t -1.88
+[0.000] [info] Init Ego LongitudinalAction initState -> startTransition -> runningState
+[0.000] [info] Controller ALKS_R157SM_Controller active on domains: Longitudinal (mask=0x1)
+[0.000] [info] Init Ego ControllerAction initState -> startTransition -> runningState
+[0.000] [info] Init Ego ControllerAction runningState -> endTransition -> completeState
+[0.000] [info] Init Obstacle TeleportAction initState -> startTransition -> runningState
+[0.000] [info] Starting teleport Action
+[0.000] [info] Obstacle New position:
+[0.000] [info] Pos(-558.82, -239.74, 0.00) Rot(3.89, 0.00, 0.00) roadId 1 laneId -1 s 275.00 offset 0.00 t -1.88
+[0.000] [info] Init Obstacle LongitudinalAction initState -> startTransition -> runningState
+[0.000] [info] storyBoard initState -> startTransition -> runningState
+[0.000] [info] MainStory initState -> startTransition -> runningState
+[0.000] [info] EgoAct initState -> initToStandbyTransition -> standbyState
+[0.000] [info] ObstacleAct initState -> initToStandbyTransition -> standbyState
+[0.000] [info] Init Ego TeleportAction runningState -> endTransition -> completeState
+[0.000] [info] Init Ego LongitudinalAction runningState -> endTransition -> completeState
+[0.000] [info] Init Obstacle TeleportAction runningState -> endTransition -> completeState
+[0.000] [info] Init Obstacle LongitudinalAction runningState -> endTransition -> completeState
+[0.050] [info] Start: true, delay: 0.00, 0.0500 > 0.0000, edge: none
+[0.050] [info] Trigger /------------------------------------------------
+[0.050] [info] Group 0:
+[0.050] [info] Start: true
+[0.050] [info] Trigger  ------------------------------------------------/
+[0.050] [info] EgoAct standbyState -> startTransition -> runningState
+[0.050] [info] EgoMG initState -> startTransition -> runningState
+[0.050] [info] Start: true, delay: 0.00, 0.0500 > 0.0000, edge: none
+[0.050] [info] Trigger /------------------------------------------------
+[0.050] [info] Group 0:
+[0.050] [info] Start: true
+[0.050] [info] Trigger  ------------------------------------------------/
+[0.050] [info] ObstacleAct standbyState -> startTransition -> runningState
+[0.050] [info] ObstacleMG initState -> startTransition -> runningState
+[5.450] [info] ALKS R157 Regulation Detected object: Obstacle Scenario: Deceleration
+[5.450] [info] ALKS R157 Regulation R157_Model mode: NO_TARGET -> CRITICAL
+[6.850] [info] ALKS R157 Regulation R157_Model mode: CRITICAL -> TARGET_IN_SIGHT
+[7.050] [info] ALKS R157 Regulation R157_Model mode: TARGET_IN_SIGHT -> NO_TARGET
+[35.050] [info] TimeLimit: true, delay: 0.00, 35.0500 > 35.0000, edge: none
+[35.050] [info] Trigger /------------------------------------------------
+[35.050] [info] Group 0:
+[35.050] [info] TimeLimit: true
+[35.050] [info] Trigger  ------------------------------------------------/
+[35.050] [info] EgoMG runningState -> stopTransition -> completeState
+[35.050] [info] EgoAct runningState -> endTransition -> completeState
+[35.050] [info] ObstacleMG runningState -> stopTransition -> completeState
+[35.050] [info] ObstacleAct runningState -> endTransition -> completeState
+[35.050] [info] MainStory runningState -> endTransition -> completeState
+[35.050] [info] storyBoard runningState -> stopTransition -> completeState
+[35.050] [info] Closing

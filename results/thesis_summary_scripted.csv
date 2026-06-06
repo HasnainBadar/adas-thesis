@@ -1,0 +1,13 @@
+Scenario,Collision,Min_Distance_m,Impact_Speed_kph
+S2_Scripted_AEB_damp_120kph,1,0.25,42.7
+S2_Scripted_AEB_damp_50kph,0,18.68,0.0
+S2_Scripted_AEB_damp_80kph,0,13.05,0.0
+S2_Scripted_AEB_dry_120kph,0,25.87,0.0
+S2_Scripted_AEB_dry_50kph,0,25.23,0.0
+S2_Scripted_AEB_dry_80kph,0,29.83,0.0
+S2_Scripted_AEB_icy_120kph,1,0.36,101.3
+S2_Scripted_AEB_icy_50kph,1,0.1,27.0
+S2_Scripted_AEB_icy_80kph,1,0.05,60.2
+S2_Scripted_AEB_wet_120kph,1,0.38,77.6
+S2_Scripted_AEB_wet_50kph,0,10.49,0.0
+S2_Scripted_AEB_wet_80kph,1,0.17,28.4

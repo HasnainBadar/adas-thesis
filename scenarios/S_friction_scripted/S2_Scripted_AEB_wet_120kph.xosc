@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="1" date="2026-05-01T00:00:00" description="Scripted AEB friction test wet 120kph" author="HasnainBadar"/>
+  <CatalogLocations>
+    <VehicleCatalog><Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/></VehicleCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network_friction_wet.xodr"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+    </ScenarioObject>
+    <ScenarioObject name="Obstacle">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction><Position><LanePosition roadId="1" laneId="-1" offset="0" s="100.0"/></Position></TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget><AbsoluteTargetSpeed value="33.333"/></SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="Obstacle">
+          <PrivateAction>
+            <TeleportAction><Position><LanePosition roadId="1" laneId="-1" offset="0" s="366.667"/></Position></TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget><AbsoluteTargetSpeed value="0"/></SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="MainStory">
+      <Act name="AEB_Act">
+        <ManeuverGroup maximumExecutionCount="1" name="AEB_MG">
+          <Actors selectTriggeringEntities="false"><EntityRef entityRef="Ego"/></Actors>
+          
+          <Maneuver name="AEB_Maneuver">
+            <Event name="AEB_Trigger_Event" priority="overwrite" maximumExecutionCount="1">
+              <Action name="EmergencyBrake">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="rate" value="3.924"/>
+                      <SpeedActionTarget><AbsoluteTargetSpeed value="0"/></SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="RadarDetection" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any"><EntityRef entityRef="Ego"/></TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition entityRef="Obstacle" relativeDistanceType="longitudinal" value="83.333" freespace="false" rule="lessThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition><SimulationTimeCondition value="0" rule="greaterThan"/></ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="Stop" delay="0" conditionEdge="none">
+          <ByValueCondition><SimulationTimeCondition value="15" rule="greaterThan"/></ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>

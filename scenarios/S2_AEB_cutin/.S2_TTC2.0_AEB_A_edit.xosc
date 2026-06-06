@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+   <FileHeader revMajor="1"
+               revMinor="0"
+               date="2025-01-01T00:00:00"
+               description="S2 TTC2.0 AEB_A - cut-in NPC with AEB"
+               author="HasnainBadar"/>
+
+   <ParameterDeclarations>
+      <ParameterDeclaration name="HostVehicle"   parameterType="string" value="car_white"/>
+      <ParameterDeclaration name="TargetVehicle" parameterType="string" value="car_red"/>
+   </ParameterDeclarations>
+
+   <CatalogLocations>
+      <VehicleCatalog>
+         <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+      </VehicleCatalog>
+   </CatalogLocations>
+
+   <RoadNetwork>
+      <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+   </RoadNetwork>
+
+   <Entities>
+      <ScenarioObject name="Ego">
+         <CatalogReference catalogName="VehicleCatalog" entryName="$HostVehicle"/>
+      </ScenarioObject>
+      <ScenarioObject name="NPC">
+         <CatalogReference catalogName="VehicleCatalog" entryName="$TargetVehicle"/>
+      </ScenarioObject>
+   </Entities>
+
+   <Storyboard>
+      <Init>
+         <Actions>
+            <!-- Ego: lane -1, s=50, 80 kph = 22.22 m/s -->
+            <Private entityRef="Ego">
+               <PrivateAction>
+                  <LongitudinalAction>
+                     <SpeedAction>
+                        <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                        <SpeedActionTarget>
+                           <AbsoluteTargetSpeed value="22.22"/>
+                        </SpeedActionTarget>
+                     </SpeedAction>
+                  </LongitudinalAction>
+               </PrivateAction>
+               <PrivateAction>
+                  <TeleportAction>
+                     <Position>
+                        <LanePosition roadId="1" laneId="-1" offset="0" s="50"/>
+                     </Position>
+                  </TeleportAction>
+               </PrivateAction>
+            </Private>
+            <!-- NPC: lane -2, s=20, faster to overtake -->
+            <Private entityRef="NPC">
+               <PrivateAction>
+                  <LongitudinalAction>
+                     <SpeedAction>
+                        <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                        <SpeedActionTarget>
+                           <AbsoluteTargetSpeed value="26.0"/>
+                        </SpeedActionTarget>
+                     </SpeedAction>
+                  </LongitudinalAction>
+               </PrivateAction>
+               <PrivateAction>
+                  <TeleportAction>
+                     <Position>
+                        <LanePosition roadId="1" laneId="-2" offset="0" s="20"/>
+                     </Position>
+                  </TeleportAction>
+               </PrivateAction>
+            </Private>
+         </Actions>
+      </Init>
+
+      <Story name="S2_Story">
+
+         <!-- NPC: cut in at t=13s, brake 2s after -->
+         <Act name="NPC_CutIn_Act">
+            <ManeuverGroup maximumExecutionCount="1" name="NPC_MG">
+               <Actors selectTriggeringEntities="false">
+                  <EntityRef entityRef="NPC"/>
+               </Actors>
+               <Maneuver name="NPC_Maneuver">
+
+                  <Event name="CutInEvent" priority="overwrite" maximumExecutionCount="1">
+                     <Action name="CutInAction">
+                        <PrivateAction>
+                           <LateralAction>
+                              <LaneChangeAction>
+                                 <LaneChangeActionDynamics dynamicsShape="sinusoidal" value="2.0" dynamicsDimension="time"/>
+                                 <LaneChangeTarget>
+                                    <RelativeTargetLane entityRef="Ego" value="0"/>
+                                 </LaneChangeTarget>
+                              </LaneChangeAction>
+                           </LateralAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <Condition name="CutInTime" delay="0" conditionEdge="rising">
+                              <ByValueCondition>
+                                 <SimulationTimeCondition value="13" rule="greaterThan"/>
+                              </ByValueCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+                  <Event name="NPCBrakeEvent" priority="overwrite" maximumExecutionCount="1">
+                     <Action name="NPCBrakeAction">
+                        <PrivateAction>
+                           <LongitudinalAction>
+                              <SpeedAction>
+                                 <SpeedActionDynamics dynamicsShape="linear" value="-5" dynamicsDimension="rate"/>
+                                 <SpeedActionTarget>
+                                    <AbsoluteTargetSpeed value="10.0"/>
+                                 </SpeedActionTarget>
+                              </SpeedAction>
+                           </LongitudinalAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <Condition name="NPCBrakeTime" delay="2.0" conditionEdge="rising">
+                              <ByValueCondition>
+                                 <StoryboardElementStateCondition storyboardElementType="event"
+                                                                  storyboardElementRef="CutInEvent"
+                                                                  state="startTransition"/>
+                              </ByValueCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+               </Maneuver>
+            </ManeuverGroup>
+            <StartTrigger>
+               <ConditionGroup>
+                  <Condition name="NPC_ActStart" delay="0" conditionEdge="none">
+                     <ByValueCondition>
+                        <SimulationTimeCondition value="0" rule="greaterOrEqual"/>
+                     </ByValueCondition>
+                  </Condition>
+               </ConditionGroup>
+            </StartTrigger>
+         </Act>
+
+         <!-- Ego AEB Act: starts at t=16s (cut-in t=13 + 2s lane change + 1s buffer) -->
+         <Act name="Ego_AEB_Act">
+            <ManeuverGroup maximumExecutionCount="1" name="Ego_MG" actorRef="Ego">
+               <Actors selectTriggeringEntities="false">
+                  <EntityRef entityRef="Ego"/>
+               </Actors>
+               <Maneuver name="Ego_Maneuver">
+
+                  <Event name="DriveConstant" priority="override">
+                     <Action>
+                        <PrivateAction>
+                           <LongitudinalAction>
+                              <SpeedAction>
+                                 <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="time"/>
+                                 <SpeedActionTarget>
+                                    <AbsoluteTargetSpeed value="22.22"/>
+                                 </SpeedActionTarget>
+                              </SpeedAction>
+                           </LongitudinalAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <Condition name="SimStart" delay="0" conditionEdge="none">
+                              <ByValueCondition>
+                                 <SimulationTimeCondition value="0" rule="greaterOrEqual"/>
+                              </ByValueCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+                  <Event name="AEB_Brake" priority="override">
+                     <Action>
+                        <PrivateAction>
+                           <LongitudinalAction>
+                              <SpeedAction>
+                                 <SpeedActionDynamics dynamicsShape="linear" value="2" dynamicsDimension="time"/>
+                                 <SpeedActionTarget>
+                                    <AbsoluteTargetSpeed value="0"/>
+                                 </SpeedActionTarget>
+                              </SpeedAction>
+                           </LongitudinalAction>
+                        </PrivateAction>
+                     </Action>
+                     <StartTrigger>
+                        <ConditionGroup>
+                           <Condition name="TTC_threshold" delay="0" conditionEdge="rising">
+                              <ByEntityCondition>
+                                 <TriggeringEntities triggeringEntitiesRule="any">
+                                    <EntityRef entityRef="Ego"/>
+                                 </TriggeringEntities>
+                                 <EntityCondition>
+                                    <TimeToCollisionCondition value="2.5" rule="lessThan" freespace="false">
+                                       <TimeToCollisionConditionTarget>
+                                          <EntityRef entityRef="NPC"/>
+                                       </TimeToCollisionConditionTarget>
+                                    </TimeToCollisionCondition>
+                                 </EntityCondition>
+                              </ByEntityCondition>
+                           </Condition>
+                        </ConditionGroup>
+                     </StartTrigger>
+                  </Event>
+
+               </Maneuver>
+            </ManeuverGroup>
+            <StartTrigger>
+               <ConditionGroup>
+                  <Condition name="Ego_ActStart" delay="0" conditionEdge="rising">
+                     <ByValueCondition>
+                        <SimulationTimeCondition value="16" rule="greaterThan"/>
+                     </ByValueCondition>
+                  </Condition>
+               </ConditionGroup>
+            </StartTrigger>
+         </Act>
+
+      </Story>
+
+      <StopTrigger>
+         <ConditionGroup>
+            <Condition name="MinTime" delay="0" conditionEdge="none">
+               <ByValueCondition>
+                  <SimulationTimeCondition value="16" rule="greaterOrEqual"/>
+               </ByValueCondition>
+            </Condition>
+            <Condition name="EgoStopped" delay="1" conditionEdge="none">
+               <ByEntityCondition>
+                  <TriggeringEntities triggeringEntitiesRule="any">
+                     <EntityRef entityRef="Ego"/>
+                  </TriggeringEntities>
+                  <EntityCondition>
+                     <SpeedCondition value="0.5" rule="lessThan"/>
+                  </EntityCondition>
+               </ByEntityCondition>
+            </Condition>
+         </ConditionGroup>
+         <ConditionGroup>
+            <Condition name="MaxTime" delay="0" conditionEdge="none">
+               <ByValueCondition>
+                  <SimulationTimeCondition value="60" rule="greaterOrEqual"/>
+               </ByValueCondition>
+            </Condition>
+         </ConditionGroup>
+      </StopTrigger>
+
+   </Storyboard>
+</OpenSCENARIO>

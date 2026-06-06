@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+
+  <FileHeader revMajor="1" revMinor="1"
+              date="2026-01-01T00:00:00"
+              description="Town05M swarm ALKS ON v2 - stationary obstacle with avoidance"
+              author="HasnainBadar"/>
+
+  <ParameterDeclarations>
+    <ParameterDeclaration name="EgoStartS"        parameterType="double"  value="400"/>
+    <ParameterDeclaration name="EgoInitSpeed"     parameterType="double"  value="18.0"/>
+    <ParameterDeclaration name="ObstacleS"        parameterType="double"  value="550"/>
+    <ParameterDeclaration name="SwarmVehicles"    parameterType="integer" value="8"/>
+    <ParameterDeclaration name="SwarmSpeed"       parameterType="double"  value="18.0"/>
+    <ParameterDeclaration name="SwarmInnerRadius" parameterType="double"  value="20"/>
+    <ParameterDeclaration name="SwarmMajorAxis"   parameterType="double"  value="200"/>
+    <ParameterDeclaration name="SwarmMinorAxis"   parameterType="double"  value="40"/>
+  </ParameterDeclarations>
+
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+
+  <RoadNetwork>
+    <LogicFile filepath="C:/esmini/resources/xodr/Town05M.xodr"/>
+  </RoadNetwork>
+
+  <Entities>
+
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <Controller name="ALKS_R157SM_Controller">
+          <Properties>
+            <Property name="model"    value="Regulation"/>
+            <Property name="logLevel" value="2"/>
+            <Property name="cruise"   value="true"/>
+          </Properties>
+        </Controller>
+      </ObjectController>
+    </ScenarioObject>
+
+    <ScenarioObject name="Obstacle">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+
+  </Entities>
+
+  <Storyboard>
+    <Init>
+      <Actions>
+
+        <GlobalAction>
+          <TrafficAction>
+            <TrafficSwarmAction
+              innerRadius="$SwarmInnerRadius"
+              semiMajorAxis="$SwarmMajorAxis"
+              semiMinorAxis="$SwarmMinorAxis"
+              numberOfVehicles="$SwarmVehicles"
+              velocity="$SwarmSpeed"
+              offset="0">
+              <CentralObject entityRef="Ego"/>
+            </TrafficSwarmAction>
+          </TrafficAction>
+        </GlobalAction>
+
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-1" offset="0" s="$EgoStartS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$EgoInitSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <ActivateControllerAction longitudinal="true" lateral="true"/>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+
+        <Private entityRef="Obstacle">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="37" laneId="-1" offset="0" s="$ObstacleS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init>
+
+    <Story name="MainStory">
+
+      <Act name="EgoAct">
+        <ManeuverGroup maximumExecutionCount="1" name="EgoMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+          
+          <Maneuver name="AvoidanceManeuver">
+            <Event name="LaneChangeEvent" priority="overwrite" maximumExecutionCount="1">
+              
+              <Action name="SuspendLKA">
+                <PrivateAction>
+                  <ControllerAction>
+                    <ActivateControllerAction longitudinal="true" lateral="false"/>
+                  </ControllerAction>
+                </PrivateAction>
+              </Action>
+
+              <Action name="LaneChange">
+                <LateralAction>
+                  <LaneChangeAction>
+                    <LaneChangeActionDynamics dynamicsShape="sinusoidal" value="3.5" dynamicsDimension="time"/>
+                    <LaneChangeTarget>
+                      <AbsoluteTargetLane value="-2"/>
+                    </LaneChangeTarget>
+                  </LaneChangeAction>
+                </LateralAction>
+              </Action>
+              
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="DistanceToObstacle" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="Ego"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition entityRef="Obstacle" relativeDistanceType="longitudinal" value="80" freespace="false" rule="lessThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+
+        </ManeuverGroup>
+        
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="EgoStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                 <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+      <Act name="ObstacleAct">
+        <ManeuverGroup maximumExecutionCount="1" name="ObstacleMG">
+          <Actors selectTriggeringEntities="false">
+             <EntityRef entityRef="Obstacle"/>
+          </Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="ObstacleStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+
+    </Story>
+
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="SimTimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="60" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

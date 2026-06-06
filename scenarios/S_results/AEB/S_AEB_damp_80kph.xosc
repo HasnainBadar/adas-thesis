@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  AEB RESULT SCENARIO — DAMP 80KPH
+  ═══════════════════════════════════════════════════════════
+  Surface           : damp (mu=0.6)
+  Road              : adas_network_friction_damp.xodr, Road 1 lane -1
+  ───────────────────────────────────────────────────────────
+  Ego               : s=50.0m, 22.222 m/s (80kph)
+  Obstacle          : s=190.0m (stationary car_red)
+  Gap ego→obstacle  : 140.0m
+  ───────────────────────────────────────────────────────────
+  ALKS decel (meas) : 6.0 m/s² (from 50kph simulation)
+  TTC trigger gap   : 66.7m (v × 3.0s)
+  Gap at trigger    : 73.3m
+  ALKS stop dist    : 41.15m
+  Safety margin     : 32.1m → SAFE ✓
+  ───────────────────────────────────────────────────────────
+  Physics model (theory):
+    dry  mu=1.0 → stop dist = 25.17m
+    damp mu=0.6 → stop dist = 41.95m
+    wet  mu=0.4 → stop dist = 62.92m
+    icy  mu=0.2 → stop dist = 125.85m
+  ───────────────────────────────────────────────────────────
+  Record 30s, StopTrigger on EgoSpeed < 0.3 m/s
+  ═══════════════════════════════════════════════════════════
+  Run:
+    cd C:\esmini
+    .\bin\esmini --osc C:\adas-thesis\scenarios\S_results\AEB\S_AEB_damp_80kph.xosc ^
+                 --fixed_timestep 0.05 --headless ^
+                 --record C:\adas-thesis\results\raw\S_AEB_damp_80kph.dat
+    .\bin\dat2csv C:\adas-thesis\results\raw\S_AEB_damp_80kph.dat ^
+                   C:\adas-thesis\results\raw\S_AEB_damp_80kph.csv
+-->
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="2"
+              date="2026-01-01T00:00:00"
+              description="AEB damp 80kph | mu=0.6 obst_s=190.0 | predicted=SAFE"
+              author="HasnainBadar"/>
+  <ParameterDeclarations/>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network_friction_damp.xodr"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <Controller name="ALKS_R157SM_Controller">
+          <Properties>
+            <Property name="model"    value="Regulation"/>
+            <Property name="logLevel" value="2"/>
+            <Property name="cruise"   value="true"/>
+          </Properties>
+        </Controller>
+      </ObjectController>
+    </ScenarioObject>
+    <ScenarioObject name="Obstacle">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="50.0">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step"
+                                     dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="22.222"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <ActivateControllerAction longitudinal="true" lateral="false"/>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="Obstacle">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="190.0">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step"
+                                     dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="MainStory">
+      <Act name="EgoAct">
+        <ManeuverGroup maximumExecutionCount="1" name="EgoMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+        <StopTrigger>
+          <ConditionGroup>
+            <Condition name="EgoStopped" delay="1.0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="Ego"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <SpeedCondition value="0.3" rule="lessThan"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StopTrigger>
+      </Act>
+      <Act name="ObstacleAct">
+        <ManeuverGroup maximumExecutionCount="1" name="ObstacleMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Obstacle"/>
+          </Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Start" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="TimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="30" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>

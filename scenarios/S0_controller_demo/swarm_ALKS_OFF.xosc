@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ADAS THESIS - Swarm Traffic Scenario
+  Version  : ALKS OFF (baseline)
+  Map      : adas_network.xodr
+  Ego      : interactiveDriver (keyboard controlled)
+  NPCs     : 8 vehicles via TrafficSwarmAction — spawn around Ego automatically
+  ALKS     : OFF on Ego — no automatic braking or ACC
+
+  WHAT THIS SHOWS:
+    Ego is keyboard controlled with no ADAS assistance.
+    8 NPC vehicles continuously spawn and move around Ego.
+    Compare with ALKS_ON version to show difference in safety behaviour.
+
+  HOW TO RUN:
+    cd C:\esmini
+    .\bin\esmini --osc C:\adas-thesis\scenarios\S0_controller_demo\swarm_ALKS_OFF.xosc ^
+                 --window 60 60 1200 600
+
+  CONTROLS:
+    Up/Down arrows  = throttle / brake
+    Left/Right      = steer
+    Tab             = follow different vehicle
+    Space           = change camera mode
+
+  FOR SCREENSHOTS:
+    Press F5 in esmini window to screenshot to current folder.
+-->
+<OpenSCENARIO>
+
+  <FileHeader revMajor="1" revMinor="1"
+              date="2026-01-01T00:00:00"
+              description="Swarm traffic ALKS OFF - ADAS thesis"
+              author="HasnainBadar"/>
+
+  <ParameterDeclarations>
+    <!-- Ego start position on highway straight -->
+    <ParameterDeclaration name="EgoStartS"    parameterType="double"  value="400"/>
+    <ParameterDeclaration name="EgoInitSpeed" parameterType="double"  value="22.2"/>
+    <!-- Swarm parameters -->
+    <ParameterDeclaration name="SwarmVehicles"   parameterType="integer" value="8"/>
+    <ParameterDeclaration name="SwarmSpeed"      parameterType="double"  value="22.2"/>
+    <ParameterDeclaration name="SwarmInnerRadius" parameterType="double" value="20"/>
+    <ParameterDeclaration name="SwarmMajorAxis"   parameterType="double" value="200"/>
+    <ParameterDeclaration name="SwarmMinorAxis"   parameterType="double" value="30"/>
+  </ParameterDeclarations>
+
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+    <ControllerCatalog>
+      <Directory path="C:/esmini/resources/xosc/Catalogs/Controllers"/>
+    </ControllerCatalog>
+  </CatalogLocations>
+
+  <RoadNetwork>
+    <LogicFile filepath="C:/adas-thesis/maps/adas_network.xodr"/>
+  </RoadNetwork>
+
+  <Entities>
+    <!--
+      Ego: interactiveDriver via CatalogReference in ObjectController.
+      Pattern verified from cut-in_interactive.xosc.
+      ALKS is OFF — Ego has no automatic braking or ACC.
+      Driver must react manually to surrounding traffic.
+    -->
+    <ScenarioObject name="Ego">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+      <ObjectController>
+        <CatalogReference catalogName="ControllerCatalog" entryName="interactiveDriver"/>
+      </ObjectController>
+    </ScenarioObject>
+  </Entities>
+
+  <Storyboard>
+    <Init>
+      <Actions>
+
+        <!--
+          GLOBAL: Spawn 8 NPC vehicles around Ego continuously.
+          Pattern directly from swarm.xosc (verified working).
+
+          innerRadius    = no vehicles within 20m of Ego (safety zone)
+          semiMajorAxis  = 200m ahead/behind Ego (along road)
+          semiMinorAxis  = 30m left/right (limited to highway width)
+          numberOfVehicles = 8 active at all times, respawn as needed
+          velocity       = 22.2 m/s = 80 kph cruise speed
+          offset         = 0 (ellipse centred on Ego)
+
+          NPCs use sloppyDriver internally (esmini default for swarm).
+          They follow road geometry and vary speed slightly.
+        -->
+        <GlobalAction>
+          <TrafficAction>
+            <TrafficSwarmAction
+              innerRadius="$SwarmInnerRadius"
+              semiMajorAxis="$SwarmMajorAxis"
+              semiMinorAxis="$SwarmMinorAxis"
+              numberOfVehicles="$SwarmVehicles"
+              velocity="$SwarmSpeed"
+              offset="0">
+              <CentralObject entityRef="Ego"/>
+            </TrafficSwarmAction>
+          </TrafficAction>
+        </GlobalAction>
+
+        <!--
+          Ego Init:
+          Step 1: Place at s=400 (middle of 800m highway — room ahead and behind)
+          Step 2: Activate interactiveDriver (pattern from cut-in_interactive.xosc)
+          Step 3: Set initial speed so Ego is moving at sim start
+        -->
+        <Private entityRef="Ego">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-1" offset="0" s="$EgoStartS">
+                  <Orientation type="relative" h="0"/>
+                </LanePosition>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ActivateControllerAction longitudinal="true" lateral="true"/>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="$EgoInitSpeed"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init>
+
+    <!--
+      Minimal story — swarm handles all NPC behaviour automatically.
+      Empty ManeuverGroup is valid as shown in swarm.xosc.
+    -->
+    <Story name="MainStory">
+      <Act name="MainAct">
+        <ManeuverGroup maximumExecutionCount="1" name="MainMG">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="Ego"/>
+          </Actors>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="ActStart" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+
+      <StopTrigger>
+      <ConditionGroup>
+        <Condition name="SimTimeLimit" delay="0" conditionEdge="none">
+          <ByValueCondition>
+            <SimulationTimeCondition value="180" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

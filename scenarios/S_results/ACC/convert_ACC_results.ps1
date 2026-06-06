@@ -1,0 +1,16 @@
+# convert_ACC_results.ps1
+$d = "C:\esmini\bin\dat2csv"
+$r = "C:\adas-thesis\results\raw"
+
+& $d "$r\S_ACC_dry_gentle.dat" "$r\S_ACC_dry_gentle.csv"
+& $d "$r\S_ACC_dry_moderate.dat" "$r\S_ACC_dry_moderate.csv"
+& $d "$r\S_ACC_dry_hard.dat" "$r\S_ACC_dry_hard.csv"
+& $d "$r\S_ACC_damp_gentle.dat" "$r\S_ACC_damp_gentle.csv"
+& $d "$r\S_ACC_damp_moderate.dat" "$r\S_ACC_damp_moderate.csv"
+& $d "$r\S_ACC_damp_hard.dat" "$r\S_ACC_damp_hard.csv"
+& $d "$r\S_ACC_wet_gentle.dat" "$r\S_ACC_wet_gentle.csv"
+& $d "$r\S_ACC_wet_moderate.dat" "$r\S_ACC_wet_moderate.csv"
+& $d "$r\S_ACC_wet_hard.dat" "$r\S_ACC_wet_hard.csv"
+& $d "$r\S_ACC_icy_gentle.dat" "$r\S_ACC_icy_gentle.csv"
+& $d "$r\S_ACC_icy_moderate.dat" "$r\S_ACC_icy_moderate.csv"
+& $d "$r\S_ACC_icy_hard.dat" "$r\S_ACC_icy_hard.csv"
